@@ -2,24 +2,65 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
 *{box-sizing:border-box;margin:0;padding:0}
-:root{--p:#5C35D9;--pl:#EDE8FF;--pd:#4A28C4;--g:#0DBF7E;--gl:#D6FAF0;--a:#F5A623;--al:#FFF0DC;--pk:#F03E6B;--pkl:#FFE0E8;--bg:#F0EDFF;--w:#fff;--bd:#E2DEFF;--tx:#2D1A7A;--sub:#8B80B8}
-body{font-family:'Nunito',sans-serif;background:var(--bg);margin:0}
-.app{display:flex;height:100vh;min-height:640px}
-.side{width:210px;background:var(--p);display:flex;flex-direction:column;flex-shrink:0}
+:root{--p:#5C35D9;--pl:#EDE8FF;--g:#0DBF7E;--gl:#D6FAF0;--a:#F5A623;--al:#FFF0DC;--pk:#F03E6B;--pkl:#FFE0E8;--bg:#F0EDFF;--w:#fff;--bd:#E2DEFF;--tx:#2D1A7A;--sub:#8B80B8}
+body{font-family:'Nunito',sans-serif;background:var(--bg);margin:0;padding:0}
+.hide{display:none!important}
+
+/* ===== LOGIN ===== */
+#login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;background:var(--bg)}
+.login-box{background:var(--w);border:2px solid var(--bd);border-radius:20px;padding:32px 28px;width:100%;max-width:380px}
+.login-logo{text-align:center;margin-bottom:24px}
+.login-logo-t{font-size:28px;font-weight:900;color:var(--tx)}
+.login-logo-t b{color:var(--p)}
+.login-logo-s{font-size:12px;font-weight:700;color:var(--sub);margin-top:4px}
+.role-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:22px}
+.role-tab{padding:12px;border:2px solid var(--bd);border-radius:14px;cursor:pointer;text-align:center;background:var(--bg);transition:all .15s}
+.role-tab.on{border-color:var(--p);background:var(--pl)}
+.role-tab-icon{font-size:24px;margin-bottom:4px}
+.role-tab-name{font-size:13px;font-weight:900;color:var(--tx)}
+.role-tab-sub{font-size:10px;font-weight:700;color:var(--sub);margin-top:2px}
+.role-tab.on .role-tab-name{color:var(--p)}
+.fl{font-size:11px;font-weight:900;color:var(--sub);margin-bottom:5px;display:block;letter-spacing:.5px}
+.fi{width:100%;padding:11px 14px;border:2px solid var(--bd);border-radius:12px;font-size:13px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg);margin-bottom:12px}
+.fi:focus{outline:none;border-color:var(--p);background:var(--pl)}
+.login-btn{width:100%;padding:13px;background:var(--p);color:#fff;border:none;border-radius:14px;font-size:14px;font-weight:900;cursor:pointer;font-family:'Nunito',sans-serif;margin-top:4px}
+.login-btn:hover{background:#4A28C4}
+.login-demo{margin-top:14px;background:var(--bg);border:2px solid var(--bd);border-radius:12px;padding:11px 14px}
+.demo-title{font-size:11px;font-weight:900;color:var(--sub);margin-bottom:7px;letter-spacing:.5px}
+.demo-row{display:flex;justify-content:space-between;font-size:11px;font-weight:700;color:var(--tx);margin-bottom:4px}
+.demo-row span{color:var(--p);font-weight:800}
+.login-err{background:var(--pkl);border:2px solid var(--pk);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:800;color:#8C1A36;margin-bottom:12px;display:none}
+
+/* ===== SHARED LAYOUT ===== */
+#student-app,#teacher-app{display:none;height:100vh;min-height:600px}
+.app-wrap{display:flex;height:100vh;min-height:600px;background:var(--bg)}
+
+/* SIDEBAR */
+.sidebar{width:215px;background:var(--p);display:flex;flex-direction:column;flex-shrink:0}
 .slogo{padding:16px;border-bottom:1px solid rgba(255,255,255,0.15)}
-.slogo-t{font-size:17px;font-weight:900;color:#fff}.slogo-t b{color:#FFD700}
+.slogo-t{font-size:18px;font-weight:900;color:#fff}
+.slogo-t b{color:#FFD700;font-weight:900}
 .slogo-s{font-size:10px;font-weight:700;color:rgba(255,255,255,0.55);margin-top:2px}
-.steacher{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;gap:9px}
-.savb{width:32px;height:32px;border-radius:50%;background:#FFD700;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#3A1F00;flex-shrink:0}
-.savn{font-size:11px;font-weight:800;color:#fff}
-.savr{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6)}
+.suser{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;gap:9px}
+.savb{width:34px;height:34px;border-radius:50%;background:#FFD700;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:900;color:#3A1F00;flex-shrink:0}
+.savn{font-size:12px;font-weight:800;color:#fff}
+.savr{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6);margin-top:1px}
 .snav{flex:1;padding:8px;display:flex;flex-direction:column;gap:1px;overflow-y:auto}
-.snav-s{font-size:9px;font-weight:900;color:rgba(255,255,255,0.4);padding:8px 8px 3px;letter-spacing:1px}
+.snav-sec{font-size:9px;font-weight:900;color:rgba(255,255,255,0.4);padding:8px 8px 3px;letter-spacing:1px}
 .snb{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;cursor:pointer;border:none;background:none;font-family:'Nunito',sans-serif;width:100%;text-align:left}
 .snb .ic{font-size:14px;width:18px;text-align:center;flex-shrink:0}
 .snb .lb{font-size:12px;font-weight:800;color:rgba(255,255,255,0.7)}
 .snb:hover{background:rgba(255,255,255,0.12)}
 .snb.on{background:rgba(255,255,255,0.2)}.snb.on .lb{color:#fff}
+.sxp{padding:11px 14px;border-top:1px solid rgba(255,255,255,0.15)}
+.sxp-l{font-size:10px;font-weight:800;color:rgba(255,255,255,0.55);margin-bottom:4px}
+.sxp-bar{background:rgba(255,255,255,0.2);border-radius:6px;height:7px;overflow:hidden;margin-bottom:4px}
+.sxp-fill{height:100%;background:#FFD700;border-radius:6px;width:62%}
+.sxp-t{font-size:10px;font-weight:700;color:rgba(255,255,255,0.65)}
+.logout-btn{margin:0 8px 10px;padding:8px;border-radius:10px;background:rgba(255,255,255,0.1);border:none;color:rgba(255,255,255,0.7);font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;display:flex;align-items:center;justify-content:center;gap:6px}
+.logout-btn:hover{background:rgba(255,255,255,0.2);color:#fff}
+
+/* MAIN */
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .topbar{background:var(--w);border-bottom:2px solid var(--bd);padding:0 18px;height:50px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .tb-t{font-size:15px;font-weight:900;color:var(--tx)}
@@ -27,362 +68,719 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);margin:0}
 .chip{font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px}
 .chip-g{background:var(--gl);color:#0A5C42}
 .chip-p{background:var(--pl);color:#3C2A9A}
+.chip-a{background:var(--al);color:#7A4A00}
 .content{flex:1;overflow-y:auto;padding:18px}
 .SCR{display:none}.SCR.ON{display:block}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
-.sv{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:13px;text-align:center}
-.svn{font-size:24px;font-weight:900;color:var(--p)}
-.svl{font-size:10px;font-weight:800;color:var(--sub);margin-top:2px}
+
+/* CARDS */
+.hero-banner{background:var(--p);border-radius:16px;padding:18px 20px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.hb-l{flex:1;min-width:180px}
+.hb-title{font-size:12px;font-weight:800;color:rgba(255,255,255,0.7);margin-bottom:2px}
+.hb-name{font-size:20px;font-weight:900;color:#fff;margin-bottom:10px}
+.hb-xw{background:rgba(255,255,255,0.22);border-radius:8px;height:8px;max-width:280px;overflow:hidden;margin-bottom:5px}
+.hb-xf{height:100%;background:#FFD700;border-radius:8px;width:62%}
+.hb-xt{font-size:11px;font-weight:700;color:rgba(255,255,255,0.75)}
+.hb-r{display:flex;gap:8px;flex-wrap:wrap}
+.hb-s{background:rgba(255,255,255,0.18);border-radius:12px;padding:10px 14px;text-align:center;min-width:65px}
+.hb-sn{font-size:20px;font-weight:900;color:#FFD700}
+.hb-sl{font-size:10px;font-weight:800;color:rgba(255,255,255,0.75);margin-top:2px}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:10px;margin-bottom:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:14px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.card{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:13px;cursor:pointer;transition:border-color .15s,transform .1s}
+.card:hover{border-color:var(--p);transform:translateY(-1px)}
+.card:active{transform:scale(0.98)}
+.card-h{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.card-ico{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.card-cn{font-size:13px;font-weight:900;color:var(--tx)}
+.card-cm{font-size:11px;font-weight:700;color:var(--sub);margin-top:2px}
+.pbar{height:5px;background:var(--bg);border-radius:3px;overflow:hidden}
+.pfill{height:100%;border-radius:3px}
+.tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px;margin:2px 2px 2px 0}
+.tel{background:var(--pl);color:#3C2A9A}.tjhs{background:var(--gl);color:#0A5C42}
+.tshs11{background:var(--al);color:#7A4A00}.tshs12{background:var(--pkl);color:#8C1A36}
+.tpub{background:var(--gl);color:#0A5C42}.tdraft{background:var(--al);color:#7A4A00}
 .sechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .sectitle{font-size:14px;font-weight:900;color:var(--tx)}
+.seclink{font-size:11px;font-weight:800;color:var(--p);cursor:pointer;background:none;border:none;font-family:'Nunito',sans-serif}
+.lvl-tabs{display:flex;gap:7px;margin-bottom:14px;flex-wrap:wrap}
+.ltab{padding:7px 14px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:20px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--sub)}
+.ltab.on{background:var(--p);border-color:var(--p);color:#fff}
+
+/* LESSON VIEW */
+.lesson-view{display:none;flex-direction:column;height:100%}
+.lesson-view.on{display:flex}
+.lhdr{background:var(--p);padding:12px 16px;display:flex;align-items:center;gap:10px;flex-shrink:0;flex-wrap:wrap}
+.bkbtn{background:rgba(255,255,255,0.2);border:none;color:#fff;font-size:12px;font-weight:800;cursor:pointer;padding:5px 12px;border-radius:10px;font-family:'Nunito',sans-serif}
+.lhdr-t{font-size:13px;font-weight:900;color:#fff;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lhdr-b{font-size:10px;font-weight:800;padding:4px 9px;border-radius:10px;background:#FFD700;color:#3A1F00;flex-shrink:0}
+.l2col{display:flex;flex:1;overflow:hidden}
+.lcontent-area{flex:1;overflow-y:auto;padding:16px;min-width:0}
+.lc{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px;font-size:13px;color:var(--tx);line-height:1.8;font-family:'Nunito',sans-serif}
+.lc h4{font-size:13px;font-weight:900;color:var(--p);margin:10px 0 5px}
+.lc p{margin-bottom:8px;font-weight:700}
+.lc ul{padding-left:18px;margin-bottom:8px}
+.lc li{margin-bottom:4px;font-weight:700}
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:14px}
+.vid-card{background:var(--w);border:2px solid var(--bd);border-radius:12px;overflow:hidden;cursor:pointer;transition:border-color .15s,transform .1s}
+.vid-card:hover{border-color:var(--p);transform:translateY(-2px)}
+.vid-thumb{position:relative;height:100px;background:var(--p);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.vid-thumb img{width:100%;height:100%;object-fit:cover}
+.vid-play{width:40px;height:40px;background:var(--pk);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;color:#fff;position:absolute}
+.vid-dur{position:absolute;bottom:5px;right:6px;background:rgba(0,0,0,0.8);color:#fff;font-size:10px;font-weight:800;padding:2px 6px;border-radius:5px}
+.vid-info{padding:9px 10px}
+.vid-title{font-size:12px;font-weight:900;color:var(--tx);margin-bottom:2px;line-height:1.4}
+.vid-ch{font-size:10px;font-weight:700;color:var(--sub)}
+.vid-yt{font-size:10px;font-weight:800;color:var(--pk);margin-top:4px;display:flex;align-items:center;gap:4px}
+.qbox{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:12px}
+.q-lbl{font-size:10px;font-weight:900;color:var(--sub);letter-spacing:.5px;margin-bottom:8px}
+.qq{font-size:13px;font-weight:800;color:var(--tx);margin-bottom:11px;line-height:1.5}
+.qo{display:block;width:100%;text-align:left;background:var(--bg);border:2px solid var(--bd);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:800;cursor:pointer;margin-bottom:6px;font-family:'Nunito',sans-serif;color:var(--tx)}
+.qo:hover{border-color:var(--p);background:var(--pl)}
+.qo.ok{background:var(--gl);border-color:var(--g);color:#0A5C42}
+.qo.no{background:var(--pkl);border-color:var(--pk);color:#8C1A36}
+.fb{font-size:12px;font-weight:800;margin-top:8px;padding:9px 12px;border-radius:10px;line-height:1.5}
+.fb.ok{background:var(--gl);color:#0A5C42}.fb.no{background:var(--pkl);color:#8C1A36}
+.chat-panel{width:290px;flex-shrink:0;display:flex;flex-direction:column;border-left:2px solid var(--bd);background:var(--w)}
+.chat-hdr{padding:11px 14px;border-bottom:2px solid var(--bd);background:var(--pl)}
+.chat-hdr-t{font-size:13px;font-weight:900;color:var(--tx)}
+.chat-hdr-s{font-size:11px;font-weight:700;color:var(--p);margin-top:1px}
+.chatbox{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:7px;min-height:80px}
+.msg{padding:8px 11px;border-radius:12px;font-size:12px;font-weight:700;line-height:1.6;max-width:90%}
+.msg.ai{background:var(--pl);color:var(--tx);align-self:flex-start;border:1.5px solid #C4B8FF}
+.msg.usr{background:var(--p);color:#fff;align-self:flex-end}
+.msg.th{background:var(--al);color:#7A4A00;font-style:italic;align-self:flex-start}
+.chat-asks{padding:8px 10px;border-top:2px solid var(--bd);display:flex;flex-direction:column;gap:4px}
+.ask-lbl{font-size:9px;font-weight:900;color:var(--sub);margin-bottom:3px;letter-spacing:.5px}
+.askbtn{width:100%;text-align:left;padding:7px 10px;font-size:11px;font-weight:800;border:2px solid var(--bd);border-radius:8px;background:var(--bg);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p)}
+.askbtn:hover{border-color:var(--p);background:var(--pl)}
+.chat-inp{padding:9px 10px;border-top:2px solid var(--bd);display:flex;gap:7px}
+.chat-inp input{flex:1;padding:8px 11px;border:2px solid var(--bd);border-radius:20px;font-size:12px;font-weight:700;background:var(--bg);color:var(--tx);font-family:'Nunito',sans-serif;min-width:0}
+.chat-inp button{padding:8px 14px;background:var(--p);color:#fff;border:none;border-radius:20px;font-size:12px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif}
+.chat-inp button:disabled{background:#C4B8FF}
+
+/* TEACHER */
 .btn{padding:8px 16px;font-size:12px;font-weight:800;border-radius:20px;cursor:pointer;font-family:'Nunito',sans-serif;border:2px solid}
 .btn-p{background:var(--p);color:#fff;border-color:var(--p)}
 .btn-o{background:var(--w);color:var(--p);border-color:var(--p)}
 .btn-g{background:var(--g);color:#fff;border-color:var(--g)}
 .btn-r{background:var(--pk);color:#fff;border-color:var(--pk)}
 .btn-sm{padding:5px 11px;font-size:11px}
-.table-wrap{background:var(--w);border:2px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.stats4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.sv{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:13px;text-align:center}
+.svn{font-size:24px;font-weight:900;color:var(--p)}
+.svl{font-size:10px;font-weight:800;color:var(--sub);margin-top:2px}
+.table-wrap{background:var(--w);border:2px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:14px;overflow-x:auto}
 .table-wrap table{width:100%;border-collapse:collapse;font-size:12px}
-.table-wrap th{background:var(--p);color:#fff;font-weight:900;padding:10px 12px;text-align:left;font-size:11px}
-.table-wrap td{padding:9px 12px;border-top:1px solid var(--bd);font-weight:700;color:var(--tx);vertical-align:middle}
+.table-wrap th{background:var(--p);color:#fff;font-weight:900;padding:10px 12px;text-align:left;font-size:11px;white-space:nowrap}
+.table-wrap td{padding:9px 12px;border-top:1px solid var(--bd);font-weight:700;color:var(--tx);vertical-align:middle;white-space:nowrap}
 .table-wrap tr:hover td{background:#FAFAFF}
-.tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px}
-.tel{background:var(--pl);color:#3C2A9A}.tjhs{background:var(--gl);color:#0A5C42}
-.tshs11{background:var(--al);color:#7A4A00}.tshs12{background:var(--pkl);color:#8C1A36}
-.tpub{background:var(--gl);color:#0A5C42}.tdraft{background:var(--al);color:#7A4A00}
-.action-row{display:flex;gap:5px}
-.modal-bg{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(20,10,60,0.55);z-index:100;align-items:center;justify-content:center;min-height:640px}
+.act-row{display:flex;gap:5px}
+.modal-bg{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(20,10,60,0.55);z-index:100;align-items:center;justify-content:center}
 .modal-bg.on{display:flex}
-.modal{background:var(--w);border-radius:16px;border:2px solid var(--bd);padding:20px;width:520px;max-width:95%;max-height:85vh;overflow-y:auto}
+.modal{background:var(--w);border-radius:16px;border:2px solid var(--bd);padding:20px;width:500px;max-width:95vw;max-height:85vh;overflow-y:auto}
 .modal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .modal-title{font-size:15px;font-weight:900;color:var(--tx)}
-.close-btn{background:none;border:none;font-size:20px;cursor:pointer;color:var(--sub);font-family:'Nunito',sans-serif;line-height:1}
-.form-group{margin-bottom:13px}
-.form-label{font-size:11px;font-weight:900;color:var(--sub);margin-bottom:5px;display:block;letter-spacing:.5px}
-.form-input{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg)}
-.form-input:focus{outline:none;border-color:var(--p)}
-.form-select{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg)}
-.form-textarea{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg);resize:vertical;min-height:80px;line-height:1.6}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.opt-row{display:flex;gap:8px;align-items:center;margin-bottom:7px}
-.opt-label{font-size:11px;font-weight:900;color:var(--p);width:20px;flex-shrink:0}
-.correct-radio{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--sub);white-space:nowrap}
-.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;padding-top:14px;border-top:2px solid var(--bd)}
-.progress-bar-wrap{background:var(--bg);border-radius:6px;height:6px;overflow:hidden;margin-top:4px;width:100px;display:inline-block;vertical-align:middle}
-.progress-bar-fill{height:100%;border-radius:6px;background:var(--p)}
-.yt-prev{width:80px;height:50px;border-radius:8px;object-fit:cover;border:2px solid var(--bd);background:var(--p);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;overflow:hidden}
-.yt-prev img{width:100%;height:100%;object-fit:cover}
-.alert{padding:10px 14px;border-radius:10px;font-size:12px;font-weight:800;margin-bottom:12px}
-.alert-g{background:var(--gl);color:#0A5C42;border:2px solid #9FE1CB}
-.alert-r{background:var(--pkl);color:#8C1A36;border:2px solid #F4C0D1}
-.student-row{display:flex;align-items:center;gap:10px;background:var(--w);border:2px solid var(--bd);border-radius:12px;padding:11px 13px;margin-bottom:8px}
-.student-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
-.student-name{font-size:13px;font-weight:800;color:var(--tx)}
-.student-level{font-size:10px;font-weight:700;color:var(--sub);margin-top:1px}
-.student-prog{margin-left:auto;text-align:right}
-.student-xp{font-size:14px;font-weight:900;color:var(--p)}
-.student-streak{font-size:10px;font-weight:700;color:var(--sub)}
-.mini-chart{display:flex;align-items:flex-end;gap:3px;height:40px;margin-top:8px}
-.bar{background:var(--p);border-radius:3px 3px 0 0;width:20px;opacity:.8;transition:height .3s}
-.bar:hover{opacity:1}
-.tip{background:var(--pl);border:2px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:11px;font-weight:700;color:var(--tx);margin-bottom:12px;line-height:1.6}
+.close-x{background:none;border:none;font-size:22px;cursor:pointer;color:var(--sub);line-height:1}
+.fgrp{margin-bottom:12px}
+.fl{font-size:11px;font-weight:900;color:var(--sub);margin-bottom:5px;display:block;letter-spacing:.5px}
+.finp{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg)}
+.finp:focus{outline:none;border-color:var(--p)}
+.fsel{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg)}
+.fta{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg);resize:vertical;min-height:90px;line-height:1.6}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfooter{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;padding-top:14px;border-top:2px solid var(--bd)}
+.tip{background:var(--pl);border:2px solid var(--bd);border-radius:10px;padding:10px 13px;font-size:12px;font-weight:700;color:var(--tx);margin-bottom:12px;line-height:1.6}
 .tip b{color:var(--p)}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-bottom:14px}
+.psec{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:13px}
+.prn{font-size:12px;font-weight:800;color:var(--tx);margin-bottom:5px}
+.prp{font-size:22px;font-weight:900;color:var(--p);margin-bottom:5px}
+.toast{display:none;position:fixed;bottom:22px;right:22px;background:var(--g);color:#fff;font-size:12px;font-weight:800;padding:11px 20px;border-radius:20px;z-index:999}
+
+/* MOBILE */
+.mob-bnav{display:none;background:var(--w);border-top:2px solid var(--bd);justify-content:space-around;padding:5px 0;flex-shrink:0}
+.mnb{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;padding:6px 10px;border-radius:10px;font-family:'Nunito',sans-serif}
+.mnb .ic{font-size:18px}.mnb .lb2{font-size:10px;font-weight:800;color:var(--sub)}
+.mnb.on{background:var(--pl)}.mnb.on .lb2{color:var(--p)}
+
+@media(max-width:700px){
+  .sidebar{display:none}
+  .mob-bnav{display:flex}
+  .chat-panel{display:none}
+  .hb-r{width:100%}.hb-s{flex:1;min-width:0;padding:8px 6px}.hb-sn{font-size:17px}
+  .stats4{grid-template-columns:repeat(2,1fr)}
+  .grid2{grid-template-columns:1fr}
+  .l2col{flex-direction:column;overflow-y:auto}
+  .lcontent-area{overflow-y:unset;padding:12px}
+  .content{padding:12px}
+}
 </style>
 
-<div class="app" style="position:relative">
-
-<div class="side">
-  <div class="slogo">
-    <div class="slogo-t">ALS<b>Learn</b><span style="color:#A78BFF">PH</span></div>
-    <div class="slogo-s">Teacher Dashboard</div>
-  </div>
-  <div class="steacher">
-    <div class="savb">TC</div>
-    <div><div class="savn">Teacher Cruz</div><div class="savr">ALS Facilitator</div></div>
-  </div>
-  <div class="snav">
-    <div class="snav-s">OVERVIEW</div>
-    <button class="snb on" onclick="goTab('S-overview',this)"><span class="ic">📊</span><span class="lb">Overview</span></button>
-    <button class="snb" onclick="goTab('S-students',this)"><span class="ic">👥</span><span class="lb">Students</span></button>
-    <div class="snav-s" style="margin-top:6px">CONTENT</div>
-    <button class="snb" onclick="goTab('S-lessons',this)"><span class="ic">📖</span><span class="lb">Lessons</span></button>
-    <button class="snb" onclick="goTab('S-questions',this)"><span class="ic">✏️</span><span class="lb">Questions</span></button>
-    <button class="snb" onclick="goTab('S-videos',this)"><span class="ic">▶</span><span class="lb">Videos</span></button>
-    <div class="snav-s" style="margin-top:6px">MANAGE</div>
-    <button class="snb" onclick="goTab('S-progress',this)"><span class="ic">📈</span><span class="lb">Progress Reports</span></button>
-    <button class="snb" onclick="goTab('S-settings',this)"><span class="ic">⚙️</span><span class="lb">Settings</span></button>
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-t">ALS<b>Learn</b><span style="color:#A78BFF">PH</span></div>
+      <div class="login-logo-s">Alternative Learning System · Powered by AI</div>
+      <div style="font-size:11px;font-weight:700;color:#8B80B8;margin-top:2px">A&E Elementary and JHS · Davao</div>
+    </div>
+    <div class="role-tabs">
+      <div class="role-tab on" id="tab-student" onclick="setRole('student')">
+        <div class="role-tab-icon">🎓</div>
+        <div class="role-tab-name">I am a Student</div>
+        <div class="role-tab-sub">ALS Learner</div>
+      </div>
+      <div class="role-tab" id="tab-teacher" onclick="setRole('teacher')">
+        <div class="role-tab-icon">👨‍🏫</div>
+        <div class="role-tab-name">I am a Teacher</div>
+        <div class="role-tab-sub">ALS Facilitator</div>
+      </div>
+    </div>
+    <div id="login-err" class="login-err">Wrong email or password. Please try again.</div>
+    <label class="fl">EMAIL ADDRESS</label>
+    <input class="fi" id="login-email" type="email" placeholder="yourname@email.com">
+    <label class="fl">PASSWORD</label>
+    <input class="fi" id="login-pass" type="password" placeholder="••••••••">
+    <button class="login-btn" onclick="doLogin()">Sign In</button>
+    <div class="login-demo" style="margin-top:14px">
+      <div class="demo-title">DEMO ACCOUNTS — CLICK TO AUTO-FILL</div>
+      <div class="demo-row" onclick="fillDemo('student@als.ph','student123','student')" style="cursor:pointer;padding:5px 0;border-radius:8px;padding:6px 8px;background:#F0EDFF;margin-bottom:4px">
+        <span>🎓 Student Demo</span><span>student@als.ph</span>
+      </div>
+      <div class="demo-row" onclick="fillDemo('teacher@als.ph','teacher123','teacher')" style="cursor:pointer;padding:6px 8px;background:#F0EDFF;border-radius:8px">
+        <span>👨‍🏫 Teacher Demo</span><span>teacher@als.ph</span>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="main">
-  <div class="topbar">
-    <div class="tb-t" id="tb-title">Overview</div>
-    <div class="tb-r">
-      <div class="chip chip-g">● Live</div>
-      <div class="chip chip-p">A&E Elementary & JHS</div>
+<!-- STUDENT APP -->
+<div id="student-app">
+<div class="app-wrap" style="position:relative">
+  <div class="sidebar">
+    <div class="slogo"><div class="slogo-t">ALS<b>Learn</b><span style="color:#A78BFF">PH</span></div><div class="slogo-s">Student Portal</div></div>
+    <div class="suser"><div class="savb" id="s-av">JD</div><div><div class="savn" id="s-name">Juan dela Cruz</div><div class="savr">ALS Student · Elementary</div></div></div>
+    <div class="snav">
+      <div class="snav-sec">LEARN</div>
+      <button class="snb on" onclick="sGoTab('SS-home',this)"><span class="ic">🏠</span><span class="lb">Dashboard</span></button>
+      <button class="snb" onclick="sGoTab('SS-subjects',this)"><span class="ic">📚</span><span class="lb">Subjects</span></button>
+      <button class="snb" onclick="sGoTab('SS-practice',this)"><span class="ic">✏️</span><span class="lb">Practice Quiz</span></button>
+      <button class="snb" onclick="sGoTab('SS-progress',this)"><span class="ic">📊</span><span class="lb">My Progress</span></button>
+      <div class="snav-sec" style="margin-top:6px">LEVELS</div>
+      <button class="snb" onclick="sGoTab('SS-subjects',this);setTimeout(()=>sSetLvl2('el'),30)"><span class="ic">🌱</span><span class="lb">Elementary</span></button>
+      <button class="snb" onclick="sGoTab('SS-subjects',this);setTimeout(()=>sSetLvl2('jhs'),30)"><span class="ic">📗</span><span class="lb">Junior High School</span></button>
+      <button class="snb" onclick="sGoTab('SS-subjects',this);setTimeout(()=>sSetLvl2('shs11'),30)"><span class="ic">🎓</span><span class="lb">SHS Grade 11</span></button>
+      <button class="snb" onclick="sGoTab('SS-subjects',this);setTimeout(()=>sSetLvl2('shs12'),30)"><span class="ic">🏅</span><span class="lb">SHS Grade 12</span></button>
+    </div>
+    <div class="sxp"><div class="sxp-l">Level 4 · XP Progress</div><div class="sxp-bar"><div class="sxp-fill"></div></div><div class="sxp-t">620 / 1000 XP to Level 5</div></div>
+    <button class="logout-btn" onclick="doLogout()">🚪 Sign out</button>
+  </div>
+  <div class="main">
+    <div class="topbar"><div class="tb-t" id="s-tb-title">Dashboard</div><div class="tb-r"><div class="chip chip-a">🔥 5 days</div><div class="chip chip-p">⭐ 620 XP</div></div></div>
+    <div class="content">
+
+      <div id="SS-home" class="SCR ON">
+        <div class="hero-banner">
+          <div class="hb-l"><div class="hb-title">Welcome back,</div><div class="hb-name" id="s-hero-name">Juan dela Cruz 👋</div><div class="hb-xw"><div class="hb-xf"></div></div><div class="hb-xt">Level 4 — 620 / 1000 XP to Level 5</div></div>
+          <div class="hb-r">
+            <div class="hb-s"><div class="hb-sn">34</div><div class="hb-sl">Lessons</div></div>
+            <div class="hb-s"><div class="hb-sn">78%</div><div class="hb-sl">Mastery</div></div>
+            <div class="hb-s"><div class="hb-sn">5🔥</div><div class="hb-sl">Streak</div></div>
+          </div>
+        </div>
+        <div class="sechead"><div class="sectitle">Continue learning</div><button class="seclink" onclick="sGoTab('SS-subjects',null)">View all →</button></div>
+        <div class="grid2" style="margin-bottom:16px">
+          <div class="card" onclick="openLesson('frac')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">➕</div><div><div class="card-cn">Fraction Operations</div><div class="card-cm">LS 3 Math · Elementary</div></div></div><div class="pbar"><div class="pfill" style="width:60%;background:var(--p)"></div></div></div>
+          <div class="card" onclick="openLesson('sva')"><div class="card-h"><div class="card-ico" style="background:#D6FAF0">📖</div><div><div class="card-cn">Subject-Verb Agreement</div><div class="card-cm">LS 1 English · JHS</div></div></div><div class="pbar"><div class="pfill" style="width:35%;background:var(--g)"></div></div></div>
+          <div class="card" onclick="openLesson('pagbasa')"><div class="card-h"><div class="card-ico" style="background:#D6FAF0">🇵🇭</div><div><div class="card-cn">Pagbabasa at Pagsusulat</div><div class="card-cm">LS 1 Filipino · Elementary</div></div></div><div class="pbar"><div class="pfill" style="width:20%;background:var(--g)"></div></div></div>
+          <div class="card" onclick="openLesson('shs11-math')"><div class="card-h"><div class="card-ico" style="background:#FFF0DC">➕</div><div><div class="card-cn">General Mathematics</div><div class="card-cm">LS 3 Math · SHS 11</div></div></div><div class="pbar"><div class="pfill" style="width:20%;background:var(--a)"></div></div></div>
+        </div>
+        <div class="sectitle" style="margin-bottom:10px">All subjects</div>
+        <div class="grid-auto">
+          <div class="card" style="padding:11px" onclick="openLesson('frac')"><div style="font-size:20px;margin-bottom:5px">➕</div><div class="card-cn" style="font-size:12px">Mathematics</div><div class="card-cm">EL/JHS/SHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:60%;background:var(--p)"></div></div></div>
+          <div class="card" style="padding:11px" onclick="openLesson('sva')"><div style="font-size:20px;margin-bottom:5px">📖</div><div class="card-cn" style="font-size:12px">English</div><div class="card-cm">EL/JHS/SHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:40%;background:var(--g)"></div></div></div>
+          <div class="card" style="padding:11px" onclick="openLesson('pagbasa')"><div style="font-size:20px;margin-bottom:5px">🇵🇭</div><div class="card-cn" style="font-size:12px">Filipino</div><div class="card-cm">EL/JHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:43%;background:var(--g)"></div></div></div>
+          <div class="card" style="padding:11px" onclick="openLesson('sci-el')"><div style="font-size:20px;margin-bottom:5px">🔬</div><div class="card-cn" style="font-size:12px">Science</div><div class="card-cm">EL/JHS/SHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:55%;background:var(--p)"></div></div></div>
+          <div class="card" style="padding:11px" onclick="openLesson('soc-el')"><div style="font-size:20px;margin-bottom:5px">🌏</div><div class="card-cn" style="font-size:12px">Self & Society</div><div class="card-cm">EL/JHS/SHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:25%;background:var(--pk)"></div></div></div>
+          <div class="card" style="padding:11px" onclick="openLesson('life-el')"><div style="font-size:20px;margin-bottom:5px">💼</div><div class="card-cn" style="font-size:12px">Life & Career</div><div class="card-cm">EL/JHS/SHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:30%;background:var(--a)"></div></div></div>
+          <div class="card" style="padding:11px" onclick="openLesson('dig-el')"><div style="font-size:20px;margin-bottom:5px">💻</div><div class="card-cn" style="font-size:12px">Digital Skills</div><div class="card-cm">EL/JHS/SHS</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:10%;background:var(--sub)"></div></div></div>
+          <div class="card" style="padding:11px;border-color:var(--a)" onclick="sGoTab('SS-subjects',null);setTimeout(()=>sSetLvl2('shs11'),30)"><div style="font-size:20px;margin-bottom:5px">🎓</div><div class="card-cn" style="font-size:12px;color:#7A4A00">SHS Grade 11</div><div class="card-cm">6 new strands!</div><div class="pbar" style="margin-top:6px"><div class="pfill" style="width:8%;background:var(--a)"></div></div></div>
+        </div>
+      </div>
+
+      <div id="SS-subjects" class="SCR">
+        <div class="lvl-tabs">
+          <div class="ltab on" id="slt-el" onclick="sSetLvl(this,'el')">🌱 Elementary</div>
+          <div class="ltab" id="slt-jhs" onclick="sSetLvl(this,'jhs')">📗 JHS</div>
+          <div class="ltab" id="slt-shs11" onclick="sSetLvl(this,'shs11')">🎓 SHS 11</div>
+          <div class="ltab" id="slt-shs12" onclick="sSetLvl(this,'shs12')">🏅 SHS 12</div>
+        </div>
+        <div id="SLL-el">
+          <div style="background:var(--pl);border:2px solid #C4B8FF;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:12px;font-weight:800;color:#3C2A9A">Elementary Level (EL) — Equivalent to Grades 1–6 · 6 Learning Strands</div>
+          <div class="grid2">
+            <div class="card" onclick="openLesson('comm-el')"><div class="card-h"><div class="card-ico" style="background:#D6FAF0">💬</div><div><div class="card-cn">LS 1: Communication Skills</div><div class="card-cm">Filipino (reading/writing) · English (vocabulary)</div></div></div><div style="margin-bottom:6px"><span class="tag tel">Filipino</span><span class="tag tjhs">English</span></div><div class="pbar"><div class="pfill" style="width:50%;background:var(--g)"></div></div></div>
+            <div class="card" onclick="openLesson('sci-el')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">🔬</div><div><div class="card-cn">LS 2: Scientific Literacy</div><div class="card-cm">Human body, hygiene, animals, environment</div></div></div><div class="pbar"><div class="pfill" style="width:30%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('frac')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">➕</div><div><div class="card-cn">LS 3: Mathematical Skills</div><div class="card-cm">Operations, fractions, decimals, measurements</div></div></div><div class="pbar"><div class="pfill" style="width:60%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('life-el')"><div class="card-h"><div class="card-ico" style="background:#FFF0DC">💼</div><div><div class="card-cn">LS 4: Life and Career Skills</div><div class="card-cm">Work basics, saving money, home safety</div></div></div><div class="pbar"><div class="pfill" style="width:20%;background:var(--a)"></div></div></div>
+            <div class="card" onclick="openLesson('soc-el')"><div class="card-h"><div class="card-ico" style="background:#FFE0E8">🌏</div><div><div class="card-cn">LS 5: Self &amp; Society</div><div class="card-cm">Family roles, PH geography, national symbols</div></div></div><div class="pbar"><div class="pfill" style="width:10%;background:var(--pk)"></div></div></div>
+            <div class="card" onclick="openLesson('dig-el')"><div class="card-h"><div class="card-ico" style="background:#F0EDFF">💻</div><div><div class="card-cn">LS 6: Digital Citizenship</div><div class="card-cm">Computer parts, turning on/off safely</div></div></div><div class="pbar"><div class="pfill" style="width:5%;background:var(--sub)"></div></div></div>
+          </div>
+        </div>
+        <div id="SLL-jhs" style="display:none">
+          <div style="background:var(--gl);border:2px solid #9FE1CB;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:12px;font-weight:800;color:#0A5C42">Junior High School (JHS) — Equivalent to Grades 7–10 · 6 Learning Strands</div>
+          <div class="grid2">
+            <div class="card" onclick="openLesson('comm-jhs')"><div class="card-h"><div class="card-ico" style="background:#D6FAF0">💬</div><div><div class="card-cn">LS 1: Communication Skills</div><div class="card-cm">Filipino (essays/debate) · English (grammar/reports)</div></div></div><div style="margin-bottom:6px"><span class="tag tel">Filipino</span><span class="tag tjhs">English</span></div><div class="pbar"><div class="pfill" style="width:40%;background:var(--g)"></div></div></div>
+            <div class="card" onclick="openLesson('sci-jhs')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">🔬</div><div><div class="card-cn">LS 2: Scientific Literacy</div><div class="card-cm">Climate change, genetics, chemistry</div></div></div><div class="pbar"><div class="pfill" style="width:25%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('alg')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">➕</div><div><div class="card-cn">LS 3: Mathematical Skills</div><div class="card-cm">Algebra, geometry, statistics, probability</div></div></div><div class="pbar"><div class="pfill" style="width:35%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('life-jhs')"><div class="card-h"><div class="card-ico" style="background:#FFF0DC">💼</div><div><div class="card-cn">LS 4: Life and Career Skills</div><div class="card-cm">Entrepreneurship, employment rights, budgeting</div></div></div><div class="pbar"><div class="pfill" style="width:15%;background:var(--a)"></div></div></div>
+            <div class="card" onclick="openLesson('soc-jhs')"><div class="card-h"><div class="card-ico" style="background:#FFE0E8">🌏</div><div><div class="card-cn">LS 5: Self &amp; Society</div><div class="card-cm">PH Constitution, world history, human rights</div></div></div><div class="pbar"><div class="pfill" style="width:20%;background:var(--pk)"></div></div></div>
+            <div class="card" onclick="openLesson('dig-jhs')"><div class="card-h"><div class="card-ico" style="background:#F0EDFF">💻</div><div><div class="card-cn">LS 6: Digital Citizenship</div><div class="card-cm">Office tools, internet research, online safety</div></div></div><div class="pbar"><div class="pfill" style="width:8%;background:var(--sub)"></div></div></div>
+          </div>
+        </div>
+        <div id="SLL-shs11" style="display:none">
+          <div style="background:var(--al);border:2px solid #FAC775;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:12px;font-weight:800;color:#7A4A00">SHS Grade 11 — Equivalent to Grade 11 · 6 Learning Strands</div>
+          <div class="grid2">
+            <div class="card" onclick="openLesson('shs11-comm')"><div class="card-h"><div class="card-ico" style="background:#D6FAF0">💬</div><div><div class="card-cn">LS 1: Oral Communication</div><div class="card-cm">Speech acts, public speaking, communication models</div></div></div><div class="pbar"><div class="pfill" style="width:15%;background:var(--g)"></div></div></div>
+            <div class="card" onclick="openLesson('shs11-sci')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">🔬</div><div><div class="card-cn">LS 2: Earth &amp; Life Science</div><div class="card-cm">Earth's structure, ecosystems, biodiversity</div></div></div><div class="pbar"><div class="pfill" style="width:10%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('shs11-math')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">➕</div><div><div class="card-cn">LS 3: General Mathematics</div><div class="card-cm">Functions, business math, interest, logic</div></div></div><div class="pbar"><div class="pfill" style="width:20%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('shs11-per')"><div class="card-h"><div class="card-ico" style="background:#FFF0DC">💼</div><div><div class="card-cn">LS 4: Personal Development</div><div class="card-cm">Self-awareness, emotional intelligence, goals</div></div></div><div class="pbar"><div class="pfill" style="width:12%;background:var(--a)"></div></div></div>
+            <div class="card" onclick="openLesson('shs11-soc')"><div class="card-h"><div class="card-ico" style="background:#FFE0E8">🌏</div><div><div class="card-cn">LS 5: The Contemporary World</div><div class="card-cm">Globalization, ASEAN, Philippines in the world</div></div></div><div class="pbar"><div class="pfill" style="width:8%;background:var(--pk)"></div></div></div>
+            <div class="card" onclick="openLesson('shs11-dig')"><div class="card-h"><div class="card-ico" style="background:#F0EDFF">💻</div><div><div class="card-cn">LS 6: Empowerment Technologies</div><div class="card-cm">ICT tools, cloud services, digital content</div></div></div><div class="pbar"><div class="pfill" style="width:5%;background:var(--sub)"></div></div></div>
+          </div>
+        </div>
+        <div id="SLL-shs12" style="display:none">
+          <div style="background:var(--pkl);border:2px solid #F4C0D1;border-radius:10px;padding:10px 13px;margin-bottom:12px;font-size:12px;font-weight:800;color:#8C1A36">SHS Grade 12 — Equivalent to Grade 12 · 6 Learning Strands</div>
+          <div class="grid2">
+            <div class="card" onclick="openLesson('shs12-comm')"><div class="card-h"><div class="card-ico" style="background:#D6FAF0">💬</div><div><div class="card-cn">LS 1: Creative Writing &amp; Reading</div><div class="card-cm">Literary genres, creative writing, text analysis</div></div></div><div class="pbar"><div class="pfill" style="width:5%;background:var(--g)"></div></div></div>
+            <div class="card" onclick="openLesson('shs12-sci')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">🔬</div><div><div class="card-cn">LS 2: Physical Science</div><div class="card-cm">Newton's laws, energy, electricity, Ohm's Law</div></div></div><div class="pbar"><div class="pfill" style="width:8%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('shs12-math')"><div class="card-h"><div class="card-ico" style="background:#EDE8FF">➕</div><div><div class="card-cn">LS 3: Statistics &amp; Probability</div><div class="card-cm">Mean/median/mode, distribution, probability</div></div></div><div class="pbar"><div class="pfill" style="width:10%;background:var(--p)"></div></div></div>
+            <div class="card" onclick="openLesson('shs12-life')"><div class="card-h"><div class="card-ico" style="background:#FFF0DC">💼</div><div><div class="card-cn">LS 4: Work Immersion &amp; Career</div><div class="card-cm">Resume writing, workplace skills, careers</div></div></div><div class="pbar"><div class="pfill" style="width:6%;background:var(--a)"></div></div></div>
+            <div class="card" onclick="openLesson('shs12-soc')"><div class="card-h"><div class="card-ico" style="background:#FFE0E8">🌏</div><div><div class="card-cn">LS 5: Politics &amp; Governance</div><div class="card-cm">3 branches, elections, civic participation</div></div></div><div class="pbar"><div class="pfill" style="width:7%;background:var(--pk)"></div></div></div>
+            <div class="card" onclick="openLesson('shs12-dig')"><div class="card-h"><div class="card-ico" style="background:#F0EDFF">💻</div><div><div class="card-cn">LS 6: Research &amp; Media Literacy</div><div class="card-cm">Research methods, fake news, APA citation</div></div></div><div class="pbar"><div class="pfill" style="width:4%;background:var(--sub)"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="SS-practice" class="SCR">
+        <div class="sectitle" style="margin-bottom:12px">Practice quiz — all levels</div>
+        <div style="max-width:600px"><div id="SPQ"></div><button onclick="nxtPQ()" style="width:100%;padding:10px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:10px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p);margin-bottom:14px">Next question →</button>
+        <div class="sectitle" style="margin-bottom:10px">Ask the AI tutor</div>
+        <button onclick="sendPrompt('How do I add fractions with different denominators for ALS Elementary?')" style="width:100%;text-align:left;padding:10px 14px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:10px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p);margin-bottom:7px">How do I add fractions? ↗</button>
+        <button onclick="sendPrompt('Explain subject-verb agreement with examples for ALS JHS English.')" style="width:100%;text-align:left;padding:10px 14px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:10px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p);margin-bottom:7px">Subject-verb agreement rules ↗</button>
+        <button onclick="sendPrompt('What is globalization and how does it affect the Philippines? SHS 11.')" style="width:100%;text-align:left;padding:10px 14px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:10px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p);margin-bottom:7px">What is globalization? ↗</button>
+        <button onclick="sendPrompt('Ipaliwanag kung paano sumulat ng pangungusap sa Filipino para sa ALS Elementary.')" style="width:100%;text-align:left;padding:10px 14px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:10px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p);margin-bottom:7px">Paano sumulat ng pangungusap? ↗</button>
+        </div>
+      </div>
+
+      <div id="SS-progress" class="SCR">
+        <div class="hero-banner" style="margin-bottom:16px">
+          <div class="hb-l"><div class="hb-title">Your learning journey</div><div class="hb-name">Keep going — you're doing great! 💪</div><div class="hb-xw"><div class="hb-xf"></div></div><div class="hb-xt">Level 4 — 380 XP to Level 5</div></div>
+          <div class="hb-r"><div class="hb-s"><div class="hb-sn">34</div><div class="hb-sl">Lessons</div></div><div class="hb-s"><div class="hb-sn">620</div><div class="hb-sl">XP</div></div><div class="hb-s"><div class="hb-sn">5🔥</div><div class="hb-sl">Streak</div></div></div>
+        </div>
+        <div class="sectitle" style="margin-bottom:12px">Subject mastery</div>
+        <div class="prog-grid" id="S-PROG"></div>
+        <button onclick="sendPrompt('I am an ALS student. Math 68%, English 40%, Science 55%, Filipino 43%. Give me a personalized weekly study plan.')" style="max-width:420px;width:100%;text-align:left;padding:10px 14px;font-size:12px;font-weight:800;border:2px solid var(--bd);border-radius:10px;background:var(--w);cursor:pointer;font-family:'Nunito',sans-serif;color:var(--p)">Get my personalized study plan ↗</button>
+      </div>
+
+    </div>
+    <div id="S-LOVERLAY" class="lesson-view">
+      <div class="lhdr">
+        <button class="bkbtn" onclick="closeLesson()">← Back</button>
+        <div id="S-LTITLE" class="lhdr-t"></div>
+        <div id="S-LBADGE" class="lhdr-b"></div>
+      </div>
+      <div class="l2col">
+        <div class="lcontent-area">
+          <div id="S-LCONT"></div>
+          <div id="S-LVIDS" style="margin-bottom:12px"></div>
+          <div id="S-LQUIZ"></div>
+        </div>
+        <div class="chat-panel">
+          <div class="chat-hdr"><div class="chat-hdr-t">AI Tutor 🤖</div><div class="chat-hdr-s">Ask me anything about this lesson</div></div>
+          <div class="chatbox" id="S-CHATBOX"></div>
+          <div class="chat-asks" id="S-LASKS"></div>
+          <div class="chat-inp"><input id="S-CINP" type="text" placeholder="Ask the AI tutor..."><button id="S-SBTN" onclick="sendChat()">Ask</button></div>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="mob-bnav" id="S-BNAV">
+    <button class="mnb on" onclick="sMGoTab('SS-home',this)"><span class="ic">🏠</span><span class="lb2">Home</span></button>
+    <button class="mnb" onclick="sMGoTab('SS-subjects',this)"><span class="ic">📚</span><span class="lb2">Subjects</span></button>
+    <button class="mnb" onclick="sMGoTab('SS-practice',this)"><span class="ic">✏️</span><span class="lb2">Practice</span></button>
+    <button class="mnb" onclick="sMGoTab('SS-progress',this)"><span class="ic">📊</span><span class="lb2">Progress</span></button>
+  </div>
+</div>
+</div>
 
-  <div class="content">
+<!-- TEACHER APP -->
+<div id="teacher-app">
+<div class="app-wrap" style="position:relative">
+  <div class="sidebar">
+    <div class="slogo"><div class="slogo-t">ALS<b>Learn</b><span style="color:#A78BFF">PH</span></div><div class="slogo-s">Teacher Dashboard</div></div>
+    <div class="suser"><div class="savb" style="background:#F03E6B;color:#fff" id="t-av">TC</div><div><div class="savn" id="t-name">Teacher Cruz</div><div class="savr">ALS Facilitator</div></div></div>
+    <div class="snav">
+      <div class="snav-sec">OVERVIEW</div>
+      <button class="snb on" onclick="tGoTab('TS-overview',this)"><span class="ic">📊</span><span class="lb">Overview</span></button>
+      <button class="snb" onclick="tGoTab('TS-students',this)"><span class="ic">👥</span><span class="lb">Students</span></button>
+      <div class="snav-sec" style="margin-top:6px">CONTENT</div>
+      <button class="snb" onclick="tGoTab('TS-lessons',this)"><span class="ic">📖</span><span class="lb">Lessons</span></button>
+      <button class="snb" onclick="tGoTab('TS-questions',this)"><span class="ic">✏️</span><span class="lb">Questions</span></button>
+      <button class="snb" onclick="tGoTab('TS-videos',this)"><span class="ic">▶</span><span class="lb">Videos</span></button>
+      <div class="snav-sec" style="margin-top:6px">REPORTS</div>
+      <button class="snb" onclick="tGoTab('TS-reports',this)"><span class="ic">📈</span><span class="lb">Progress Reports</span></button>
+    </div>
+    <button class="logout-btn" onclick="doLogout()">🚪 Sign out</button>
+  </div>
+  <div class="main">
+    <div class="topbar"><div class="tb-t" id="t-tb-title">Overview</div><div class="tb-r"><div class="chip chip-g">● Live</div><div class="chip chip-p">A&E EL & JHS · Davao</div></div></div>
+    <div class="content">
 
-    <!-- OVERVIEW -->
-    <div id="S-overview" class="SCR ON">
-      <div class="stats">
-        <div class="sv"><div class="svn">48</div><div class="svl">Total students</div></div>
-        <div class="sv"><div class="svn" style="color:#0DBF7E">24</div><div class="svl">Active today</div></div>
-        <div class="sv"><div class="svn" style="color:#F5A623">312</div><div class="svl">Lessons completed</div></div>
-        <div class="sv"><div class="svn" style="color:#F03E6B">6</div><div class="svl">Need attention</div></div>
-      </div>
-      <div class="form-row" style="margin-bottom:16px">
-        <div>
-          <div class="sectitle" style="margin-bottom:10px">Weekly activity</div>
-          <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px">
-            <div class="mini-chart">
-              <div class="bar" style="height:22px" title="Mon: 11"></div>
-              <div class="bar" style="height:30px" title="Tue: 15"></div>
-              <div class="bar" style="height:18px" title="Wed: 9"></div>
-              <div class="bar" style="height:36px" title="Thu: 18"></div>
-              <div class="bar" style="height:28px" title="Fri: 14"></div>
-              <div class="bar" style="height:10px;opacity:.4" title="Sat: 5"></div>
-              <div class="bar" style="height:8px;opacity:.3" title="Sun: 4"></div>
-            </div>
-            <div style="display:flex;gap:6px;margin-top:6px">
-              <span style="font-size:10px;font-weight:700;color:var(--sub)">Mon</span>
-              <span style="font-size:10px;font-weight:700;color:var(--sub)">Tue</span>
-              <span style="font-size:10px;font-weight:700;color:var(--sub)">Wed</span>
-              <span style="font-size:10px;font-weight:700;color:var(--sub)">Thu</span>
-              <span style="font-size:10px;font-weight:700;color:var(--sub);margin-left:4px">Fri</span>
-              <span style="font-size:10px;font-weight:700;color:var(--sub);margin-left:6px">Sat</span>
-              <span style="font-size:10px;font-weight:700;color:var(--sub);margin-left:4px">Sun</span>
-            </div>
-            <div style="font-size:11px;font-weight:700;color:var(--sub);margin-top:6px">Total lessons this week: <b style="color:var(--p)">75</b></div>
-          </div>
+      <div id="TS-overview" class="SCR ON">
+        <div class="stats4">
+          <div class="sv"><div class="svn">48</div><div class="svl">Total students</div></div>
+          <div class="sv"><div class="svn" style="color:var(--g)">24</div><div class="svl">Active today</div></div>
+          <div class="sv"><div class="svn" style="color:var(--a)">312</div><div class="svl">Lessons done</div></div>
+          <div class="sv"><div class="svn" style="color:var(--pk)">6</div><div class="svl">Need attention</div></div>
         </div>
-        <div>
-          <div class="sectitle" style="margin-bottom:10px">Students needing attention</div>
-          <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:12px">
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--pkl);border-radius:10px">
-                <div style="width:28px;height:28px;border-radius:50%;background:#F03E6B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">MR</div>
-                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#8C1A36">Maria Reyes</div><div style="font-size:10px;font-weight:700;color:#C0254F">No activity for 5 days</div></div>
-                <button class="btn btn-r btn-sm" onclick="showAlert('Message sent to Maria Reyes!')">Message</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:#FFF0DC;border-radius:10px">
-                <div style="width:28px;height:28px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">JB</div>
-                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#7A4A00">Jose Bautista</div><div style="font-size:10px;font-weight:700;color:#854F0B">Struggling with Math (32%)</div></div>
-                <button class="btn btn-sm" style="background:#F5A623;color:#fff;border-color:#F5A623" onclick="showAlert('Extra Math resources sent to Jose!')">Help</button>
-              </div>
-              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:#FFF0DC;border-radius:10px">
-                <div style="width:28px;height:28px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">AL</div>
-                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#7A4A00">Ana Lopez</div><div style="font-size:10px;font-weight:700;color:#854F0B">Quiz score below 50% x3</div></div>
-                <button class="btn btn-sm" style="background:#F5A623;color:#fff;border-color:#F5A623" onclick="showAlert('Review session scheduled for Ana!')">Help</button>
-              </div>
+        <div class="grid2" style="margin-bottom:16px">
+          <div>
+            <div class="sectitle" style="margin-bottom:10px">Students needing attention</div>
+            <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--pkl);border-radius:10px"><div style="width:28px;height:28px;border-radius:50%;background:var(--pk);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">MR</div><div style="flex:1"><div style="font-size:12px;font-weight:800;color:#8C1A36">Maria Reyes</div><div style="font-size:10px;font-weight:700;color:#C0254F">No activity for 5 days</div></div><button class="btn btn-r btn-sm" onclick="showToast('Message sent to Maria!')">Message</button></div>
+              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--al);border-radius:10px"><div style="width:28px;height:28px;border-radius:50%;background:var(--a);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">JB</div><div style="flex:1"><div style="font-size:12px;font-weight:800;color:#7A4A00">Jose Bautista</div><div style="font-size:10px;font-weight:700;color:#854F0B">Struggling with Math (32%)</div></div><button class="btn btn-sm" style="background:var(--a);color:#fff;border-color:var(--a)" onclick="showToast('Extra resources sent to Jose!')">Help</button></div>
             </div>
           </div>
+          <div>
+            <div class="sectitle" style="margin-bottom:10px">Subject completion</div>
+            <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px">
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Mathematics</span><span style="font-size:12px;font-weight:900;color:var(--p)">68%</span></div><div style="background:var(--bg);height:7px;border-radius:4px;overflow:hidden"><div style="width:68%;height:100%;background:var(--p);border-radius:4px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">English</span><span style="font-size:12px;font-weight:900;color:var(--g)">52%</span></div><div style="background:var(--bg);height:7px;border-radius:4px;overflow:hidden"><div style="width:52%;height:100%;background:var(--g);border-radius:4px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Filipino</span><span style="font-size:12px;font-weight:900;color:var(--g)">61%</span></div><div style="background:var(--bg);height:7px;border-radius:4px;overflow:hidden"><div style="width:61%;height:100%;background:var(--g);border-radius:4px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Science</span><span style="font-size:12px;font-weight:900;color:var(--a)">44%</span></div><div style="background:var(--bg);height:7px;border-radius:4px;overflow:hidden"><div style="width:44%;height:100%;background:var(--a);border-radius:4px"></div></div></div>
+              <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Digital Skills</span><span style="font-size:12px;font-weight:900;color:var(--pk)">22%</span></div><div style="background:var(--bg);height:7px;border-radius:4px;overflow:hidden"><div style="width:22%;height:100%;background:var(--pk);border-radius:4px"></div></div></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="sectitle" style="margin-bottom:10px">Subject completion rates</div>
-      <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Mathematics</span><span style="font-size:12px;font-weight:900;color:var(--p)">68%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:68%;height:100%;background:var(--p);border-radius:5px"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">English</span><span style="font-size:12px;font-weight:900;color:#0DBF7E">52%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:52%;height:100%;background:#0DBF7E;border-radius:5px"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Filipino</span><span style="font-size:12px;font-weight:900;color:#0DBF7E">61%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:61%;height:100%;background:#0DBF7E;border-radius:5px"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Science</span><span style="font-size:12px;font-weight:900;color:var(--p)">44%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:44%;height:100%;background:var(--p);border-radius:5px"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Self & Society</span><span style="font-size:12px;font-weight:900;color:#F5A623">35%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:35%;height:100%;background:#F5A623;border-radius:5px"></div></div></div>
-          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Digital Skills</span><span style="font-size:12px;font-weight:900;color:#F03E6B">22%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:22%;height:100%;background:#F03E6B;border-radius:5px"></div></div></div>
-        </div>
-      </div>
-    </div>
 
-    <!-- STUDENTS -->
-    <div id="S-students" class="SCR">
-      <div class="sechead">
-        <div class="sectitle">All students (48)</div>
-        <button class="btn btn-p" onclick="openModal('add-student')">+ Add Student</button>
+      <div id="TS-students" class="SCR">
+        <div class="sechead"><div class="sectitle">All students (48)</div><button class="btn btn-p" onclick="openTModal('add-student')">+ Add Student</button></div>
+        <div class="tip"><b>Click "View"</b> on any student to see their full progress and send them a message.</div>
+        <div id="T-STUDENTS"></div>
       </div>
-      <div class="tip"><b>Tip:</b> Click any student row to see their full progress report and send a message.</div>
-      <div id="student-list"></div>
-    </div>
 
-    <!-- LESSONS -->
-    <div id="S-lessons" class="SCR">
-      <div class="sechead">
-        <div class="sectitle">Lessons</div>
-        <button class="btn btn-p" onclick="openModal('add-lesson')">+ Add Lesson</button>
-      </div>
-      <div class="tip"><b>Tip:</b> Each lesson belongs to a subject and level. Add HTML content — use &lt;h4&gt; for headings, &lt;p&gt; for paragraphs, &lt;ul&gt;&lt;li&gt; for lists.</div>
-      <div class="table-wrap">
-        <table>
+      <div id="TS-lessons" class="SCR">
+        <div class="sechead"><div class="sectitle">Lessons</div><button class="btn btn-p" onclick="openTModal('add-lesson')">+ Add Lesson</button></div>
+        <div class="tip"><b>Tip:</b> Write lesson content using HTML tags — &lt;h4&gt; for headings, &lt;p&gt; for text, &lt;ul&gt;&lt;li&gt; for lists.</div>
+        <div class="table-wrap"><table>
           <tr><th>Title</th><th>Subject</th><th>Level</th><th>Questions</th><th>Videos</th><th>Status</th><th>Actions</th></tr>
-          <tr><td><b>Fraction Operations</b></td><td>Mathematics</td><td><span class="tag tel">EL</span></td><td>3</td><td>3</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>Basic Sentence Construction</b></td><td>English</td><td><span class="tag tel">EL</span></td><td>5</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>Pagbabasa at Pagsusulat</b></td><td>Filipino</td><td><span class="tag tel">EL</span></td><td>4</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>Subject-Verb Agreement</b></td><td>English</td><td><span class="tag tjhs">JHS</span></td><td>6</td><td>1</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>Introduction to Algebra</b></td><td>Mathematics</td><td><span class="tag tjhs">JHS</span></td><td>5</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>Climate Change & Environment</b></td><td>Science</td><td><span class="tag tjhs">JHS</span></td><td>2</td><td>0</td><td><span class="tag tdraft">Draft</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>General Mathematics</b></td><td>Mathematics</td><td><span class="tag tshs11">SHS 11</span></td><td>4</td><td>1</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-          <tr><td><b>Statistics & Probability</b></td><td>Mathematics</td><td><span class="tag tshs12">SHS 12</span></td><td>3</td><td>2</td><td><span class="tag tdraft">Draft</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
-        </table>
+          <tr><td><b>Fraction Operations</b></td><td>Mathematics</td><td><span class="tag tel">EL</span></td><td>3</td><td>3</td><td><span class="tag tpub">Published</span></td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:var(--pl);color:var(--p);border-color:#C4B8FF" onclick="openTModal('add-question')">+Quiz</button></div></td></tr>
+          <tr><td><b>Subject-Verb Agreement</b></td><td>English</td><td><span class="tag tjhs">JHS</span></td><td>6</td><td>1</td><td><span class="tag tpub">Published</span></td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:var(--pl);color:var(--p);border-color:#C4B8FF" onclick="openTModal('add-question')">+Quiz</button></div></td></tr>
+          <tr><td><b>Pagbabasa at Pagsusulat</b></td><td>Filipino</td><td><span class="tag tel">EL</span></td><td>4</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:var(--pl);color:var(--p);border-color:#C4B8FF" onclick="openTModal('add-question')">+Quiz</button></div></td></tr>
+          <tr><td><b>Introduction to Algebra</b></td><td>Mathematics</td><td><span class="tag tjhs">JHS</span></td><td>5</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:var(--pl);color:var(--p);border-color:#C4B8FF" onclick="openTModal('add-question')">+Quiz</button></div></td></tr>
+          <tr><td><b>Climate Change</b></td><td>Science</td><td><span class="tag tjhs">JHS</span></td><td>2</td><td>0</td><td><span class="tag tdraft">Draft</span></td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:var(--pl);color:var(--p);border-color:#C4B8FF" onclick="openTModal('add-question')">+Quiz</button></div></td></tr>
+          <tr><td><b>General Mathematics</b></td><td>Mathematics</td><td><span class="tag tshs11">SHS 11</span></td><td>4</td><td>1</td><td><span class="tag tpub">Published</span></td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:var(--pl);color:var(--p);border-color:#C4B8FF" onclick="openTModal('add-question')">+Quiz</button></div></td></tr>
+        </table></div>
       </div>
-    </div>
 
-    <!-- QUESTIONS -->
-    <div id="S-questions" class="SCR">
-      <div class="sechead">
-        <div class="sectitle">Quiz questions</div>
-        <button class="btn btn-p" onclick="openModal('add-question')">+ Add Question</button>
-      </div>
-      <div class="tip"><b>Tip:</b> Add as many questions per lesson as you want — Easy, Medium, and Hard. The app randomly picks questions for each student session.</div>
-      <div class="table-wrap">
-        <table>
+      <div id="TS-questions" class="SCR">
+        <div class="sechead"><div class="sectitle">Quiz questions</div><button class="btn btn-p" onclick="openTModal('add-question')">+ Add Question</button></div>
+        <div class="tip"><b>Tip:</b> Add Easy, Medium, and Hard questions per lesson. The app randomly picks questions for each student session.</div>
+        <div class="table-wrap"><table>
           <tr><th>Question</th><th>Lesson</th><th>Difficulty</th><th>Correct</th><th>Actions</th></tr>
-          <tr><td style="max-width:200px">What is ¾ + ½?</td><td>Fraction Operations</td><td><span class="tag" style="background:#D6FAF0;color:#0A5C42">Easy</span></td><td>B. 1¼</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
-          <tr><td style="max-width:200px">What is the LCD of ½ and ⅓?</td><td>Fraction Operations</td><td><span class="tag" style="background:#FFF0DC;color:#7A4A00">Medium</span></td><td>C. 6</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
-          <tr><td style="max-width:200px">"The children ___ in the park."</td><td>Subject-Verb Agreement</td><td><span class="tag" style="background:#D6FAF0;color:#0A5C42">Easy</span></td><td>B. play</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
-          <tr><td style="max-width:200px">Solve: x + 7 = 15. x = ?</td><td>Introduction to Algebra</td><td><span class="tag" style="background:#FFF0DC;color:#7A4A00">Medium</span></td><td>C. 8</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
-          <tr><td style="max-width:200px">Main cause of climate change?</td><td>Climate Change</td><td><span class="tag" style="background:#D6FAF0;color:#0A5C42">Easy</span></td><td>B. Burning fossil fuels</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
-          <tr><td style="max-width:200px">Simple interest: ₱5,000 at 4% for 2 years?</td><td>General Mathematics</td><td><span class="tag" style="background:#FFE0E8;color:#8C1A36">Hard</span></td><td>B. ₱400</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
-        </table>
+          <tr><td>What is ¾ + ½?</td><td>Fraction Operations</td><td><span class="tag" style="background:var(--gl);color:#0A5C42">Easy</span></td><td>B. 1¼</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td>"The children ___ in the park."</td><td>Subject-Verb Agreement</td><td><span class="tag" style="background:var(--gl);color:#0A5C42">Easy</span></td><td>B. play</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td>Solve: x + 7 = 15. x = ?</td><td>Introduction to Algebra</td><td><span class="tag" style="background:var(--al);color:#7A4A00">Medium</span></td><td>C. 8</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td>Simple interest: ₱5,000 at 4% for 2 years?</td><td>General Mathematics</td><td><span class="tag" style="background:var(--pkl);color:#8C1A36">Hard</span></td><td>B. ₱400</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Question deleted!')">Delete</button></div></td></tr>
+        </table></div>
       </div>
-    </div>
 
-    <!-- VIDEOS -->
-    <div id="S-videos" class="SCR">
-      <div class="sechead">
-        <div class="sectitle">YouTube videos</div>
-        <button class="btn btn-p" onclick="openModal('add-video')">+ Add Video</button>
-      </div>
-      <div class="tip"><b>How to get a YouTube ID:</b> Open the video on YouTube → copy the code after <b>?v=</b> in the URL → paste below. Example: youtube.com/watch?v=<b>abc123XYZ</b></div>
-      <div class="table-wrap">
-        <table>
+      <div id="TS-videos" class="SCR">
+        <div class="sechead"><div class="sectitle">YouTube videos</div><button class="btn btn-p" onclick="openTModal('add-video')">+ Add Video</button></div>
+        <div class="tip"><b>How to get a YouTube ID:</b> Open YouTube video → copy code after <b>?v=</b> → paste below. Thumbnail previews automatically!</div>
+        <div class="table-wrap"><table>
           <tr><th>Thumbnail</th><th>Title</th><th>Lesson</th><th>Channel</th><th>Duration</th><th>Actions</th></tr>
-          <tr>
-            <td><div class="yt-prev" style="background:#5C35D9;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
-            <td><b>Understanding Fractions</b></td><td>Fraction Operations</td><td>DepEd TV</td><td>5:24</td>
-            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
-          </tr>
-          <tr>
-            <td><div class="yt-prev" style="background:#F03E6B;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
-            <td><b>Subject-Verb Agreement</b></td><td>Subject-Verb Agreement</td><td>English Guro PH</td><td>7:10</td>
-            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
-          </tr>
-          <tr>
-            <td><div class="yt-prev" style="background:#0DBF7E;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
-            <td><b>Pagbabasa — Simpleng Kwento</b></td><td>Pagbabasa at Pagsusulat</td><td>DepEd TV</td><td>4:33</td>
-            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
-          </tr>
-          <tr>
-            <td><div class="yt-prev" style="background:#F5A623;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
-            <td><b>Intro to Algebra — Jeepney Example</b></td><td>Introduction to Algebra</td><td>Math Teacher Guro</td><td>6:45</td>
-            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
-          </tr>
-        </table>
+          <tr><td><div style="width:80px;height:50px;background:var(--p);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td><td><b>Understanding Fractions</b></td><td>Fraction Operations</td><td>DepEd TV</td><td>5:24</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Video removed!')">Remove</button></div></td></tr>
+          <tr><td><div style="width:80px;height:50px;background:var(--g);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td><td><b>Subject-Verb Agreement</b></td><td>Subject-Verb Agreement</td><td>English Guro PH</td><td>7:10</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Video removed!')">Remove</button></div></td></tr>
+          <tr><td><div style="width:80px;height:50px;background:var(--pk);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td><td><b>Intro to Algebra</b></td><td>Introduction to Algebra</td><td>Math Teacher Guro</td><td>6:45</td><td><div class="act-row"><button class="btn btn-o btn-sm" onclick="openTModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showToast('Video removed!')">Remove</button></div></td></tr>
+        </table></div>
       </div>
-    </div>
 
-    <!-- PROGRESS -->
-    <div id="S-progress" class="SCR">
-      <div class="sechead"><div class="sectitle">Progress reports</div><button class="btn btn-o" onclick="showAlert('Report exported as CSV!')">Export CSV</button></div>
-      <div class="table-wrap">
-        <table>
-          <tr><th>Student</th><th>Level</th><th>Math</th><th>English</th><th>Filipino</th><th>Science</th><th>Total XP</th><th>Last Active</th></tr>
+      <div id="TS-reports" class="SCR">
+        <div class="sechead"><div class="sectitle">Progress reports</div><button class="btn btn-o" onclick="showToast('Report exported as CSV!')">Export CSV</button></div>
+        <div class="table-wrap"><table>
+          <tr><th>Student</th><th>Level</th><th>Math</th><th>English</th><th>Filipino</th><th>Science</th><th>XP</th><th>Last Active</th></tr>
           <tr><td><b>Juan dela Cruz</b></td><td><span class="tag tel">EL</span></td><td>68%</td><td>40%</td><td>43%</td><td>55%</td><td><b style="color:var(--p)">620</b></td><td>Today</td></tr>
           <tr><td><b>Ana Lopez</b></td><td><span class="tag tel">EL</span></td><td>32%</td><td>58%</td><td>70%</td><td>44%</td><td><b style="color:var(--p)">410</b></td><td>Today</td></tr>
-          <tr><td><b>Jose Bautista</b></td><td><span class="tag tjhs">JHS</span></td><td>28%</td><td>62%</td><td>55%</td><td>38%</td><td><b style="color:#F5A623">290</b></td><td>2 days ago</td></tr>
-          <tr><td><b>Maria Reyes</b></td><td><span class="tag tjhs">JHS</span></td><td>75%</td><td>80%</td><td>65%</td><td>70%</td><td><b style="color:#0DBF7E">890</b></td><td>5 days ago</td></tr>
-          <tr><td><b>Pedro Santos</b></td><td><span class="tag tshs11">SHS 11</span></td><td>82%</td><td>74%</td><td>68%</td><td>77%</td><td><b style="color:#0DBF7E">1240</b></td><td>Today</td></tr>
-          <tr><td><b>Rosa Garcia</b></td><td><span class="tag tshs12">SHS 12</span></td><td>90%</td><td>85%</td><td>88%</td><td>82%</td><td><b style="color:#0DBF7E">1820</b></td><td>Yesterday</td></tr>
-        </table>
+          <tr><td><b>Jose Bautista</b></td><td><span class="tag tjhs">JHS</span></td><td>28%</td><td>62%</td><td>55%</td><td>38%</td><td><b style="color:var(--a)">290</b></td><td>2 days ago</td></tr>
+          <tr><td><b>Maria Reyes</b></td><td><span class="tag tjhs">JHS</span></td><td>75%</td><td>80%</td><td>65%</td><td>70%</td><td><b style="color:var(--g)">890</b></td><td>5 days ago</td></tr>
+          <tr><td><b>Pedro Santos</b></td><td><span class="tag tshs11">SHS 11</span></td><td>82%</td><td>74%</td><td>68%</td><td>77%</td><td><b style="color:var(--g)">1240</b></td><td>Today</td></tr>
+          <tr><td><b>Rosa Garcia</b></td><td><span class="tag tshs12">SHS 12</span></td><td>90%</td><td>85%</td><td>88%</td><td>82%</td><td><b style="color:var(--g)">1820</b></td><td>Yesterday</td></tr>
+        </table></div>
       </div>
-    </div>
 
-    <!-- SETTINGS -->
-    <div id="S-settings" class="SCR">
-      <div class="sectitle" style="margin-bottom:14px">App settings</div>
-      <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:16px;max-width:500px">
-        <div class="form-group"><label class="form-label">SCHOOL / CENTER NAME</label><input class="form-input" value="A&E Elementary and JHS — Davao"></div>
-        <div class="form-group"><label class="form-label">ALS FACILITATOR NAME</label><input class="form-input" value="Teacher Cruz"></div>
-        <div class="form-group"><label class="form-label">SUPABASE PROJECT URL</label><input class="form-input" value="https://your-project.supabase.co" type="url"></div>
-        <div class="form-group"><label class="form-label">SUPABASE ANON KEY</label><input class="form-input" value="eyJhbGciOiJIUzI1NiIs..." type="password"></div>
-        <div class="form-group"><label class="form-label">ANTHROPIC API KEY (server only)</label><input class="form-input" value="sk-ant-..." type="password"></div>
-        <div class="form-group"><label class="form-label">DEFAULT STUDENT LEVEL</label>
-          <select class="form-select"><option>Elementary (EL)</option><option>Junior High School (JHS)</option><option>SHS Grade 11</option><option>SHS Grade 12</option></select>
-        </div>
-        <button class="btn btn-g" onclick="showAlert('Settings saved successfully!')">Save settings</button>
-      </div>
     </div>
-
   </div>
 </div>
-
-<!-- MODALS -->
-<div id="modal-bg" class="modal-bg" onclick="closeModal(event)">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div id="modal-content"></div>
-  </div>
+<!-- TEACHER MODAL -->
+<div id="T-MODAL-BG" class="modal-bg" onclick="closeTModal(event)">
+  <div class="modal" onclick="event.stopPropagation()"><div id="T-MODAL-CONTENT"></div></div>
+</div>
 </div>
 
-<div id="toast" style="display:none;position:absolute;bottom:20px;right:20px;background:#0DBF7E;color:#fff;font-size:12px;font-weight:800;padding:10px 18px;border-radius:20px;z-index:200"></div>
-
-</div>
+<div class="toast" id="TOAST"></div>
 
 <script>
-var TITLES={'S-overview':'Overview','S-students':'Students','S-lessons':'Lessons','S-questions':'Questions','S-videos':'Videos','S-progress':'Progress Reports','S-settings':'Settings'};
+var ROLE='student';
+var curK=null;
 
-function goTab(id,btn){
-  document.querySelectorAll('.SCR').forEach(function(s){s.classList.remove('ON');});
+function setRole(r){
+  ROLE=r;
+  document.getElementById('tab-student').classList.toggle('on',r==='student');
+  document.getElementById('tab-teacher').classList.toggle('on',r==='teacher');
+}
+function fillDemo(email,pass,role){
+  document.getElementById('login-email').value=email;
+  document.getElementById('login-pass').value=pass;
+  setRole(role);
+}
+function doLogin(){
+  var email=document.getElementById('login-email').value.trim();
+  var pass=document.getElementById('login-pass').value.trim();
+  var err=document.getElementById('login-err');
+  if((email==='student@als.ph'&&pass==='student123')||(email!==''&&pass!==''&&ROLE==='student'&&pass.length>=6)){
+    err.style.display='none';
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('student-app').style.display='block';
+    var n=email.split('@')[0];
+    var disp=n==='student'?'Juan dela Cruz':n.replace('.',' ');
+    document.getElementById('s-name').textContent=disp;
+    document.getElementById('s-hero-name').textContent=disp+' 👋';
+    document.getElementById('s-av').textContent=disp.split(' ').map(function(w){return w[0];}).join('').substring(0,2).toUpperCase();
+    renderSProg();renderPQ();
+  } else if((email==='teacher@als.ph'&&pass==='teacher123')||(email!==''&&pass!==''&&ROLE==='teacher'&&pass.length>=6)){
+    err.style.display='none';
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('teacher-app').style.display='block';
+    buildTStudents();
+  } else {
+    err.style.display='block';
+  }
+}
+function doLogout(){
+  document.getElementById('student-app').style.display='none';
+  document.getElementById('teacher-app').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('login-email').value='';
+  document.getElementById('login-pass').value='';
+}
+
+// STUDENT NAV
+var STITLES={'SS-home':'Dashboard','SS-subjects':'Subjects','SS-practice':'Practice Quiz','SS-progress':'My Progress'};
+function sGoTab(id,btn){
+  document.querySelectorAll('#student-app .SCR').forEach(function(s){s.classList.remove('ON');});
+  document.getElementById('S-LOVERLAY').classList.remove('on');
+  document.getElementById('S-LOVERLAY').style.display='';
   var s=document.getElementById(id);if(s)s.classList.add('ON');
-  document.querySelectorAll('.snb').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('#student-app .snb').forEach(function(b){b.classList.remove('on');});
   if(btn)btn.classList.add('on');
-  document.getElementById('tb-title').textContent=TITLES[id]||'Dashboard';
+  document.getElementById('s-tb-title').textContent=STITLES[id]||'ALSLearnPH';
+}
+function sMGoTab(id,btn){
+  sGoTab(id,null);
+  document.querySelectorAll('#S-BNAV .mnb').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+}
+function sSetLvl(btn,lvl){
+  document.querySelectorAll('#SS-subjects .ltab').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  ['el','jhs','shs11','shs12'].forEach(function(l){document.getElementById('SLL-'+l).style.display=l===lvl?'block':'none';});
+}
+function sSetLvl2(lvl){
+  document.querySelectorAll('#SS-subjects .ltab').forEach(function(b){b.classList.remove('on');});
+  var t=document.getElementById('slt-'+lvl);if(t)t.classList.add('on');
+  ['el','jhs','shs11','shs12'].forEach(function(l){document.getElementById('SLL-'+l).style.display=l===lvl?'block':'none';});
 }
 
-var STUDENTS=[
-  {n:'Juan dela Cruz',l:'EL',xp:620,streak:5,c:'#5C35D9',i:'JD'},
-  {n:'Ana Lopez',l:'EL',xp:410,streak:3,c:'#0DBF7E',i:'AL'},
-  {n:'Jose Bautista',l:'JHS',xp:290,streak:1,c:'#F5A623',i:'JB'},
-  {n:'Maria Reyes',l:'JHS',xp:890,streak:0,c:'#F03E6B',i:'MR'},
-  {n:'Pedro Santos',l:'SHS 11',xp:1240,streak:7,c:'#5C35D9',i:'PS'},
-  {n:'Rosa Garcia',l:'SHS 12',xp:1820,streak:12,c:'#0DBF7E',i:'RG'},
-  {n:'Carlos Dela Vega',l:'EL',xp:180,streak:2,c:'#F5A623',i:'CD'},
-  {n:'Liza Manalo',l:'JHS',xp:560,streak:4,c:'#F03E6B',i:'LM'}
-];
-
-function buildStudents(){
-  var lvlTag={'EL':'tel','JHS':'tjhs','SHS 11':'tshs11','SHS 12':'tshs12'};
-  var h='';
-  STUDENTS.forEach(function(s){
-    h+='<div class="student-row"><div class="student-av" style="background:'+s.c+';color:#fff">'+s.i+'</div><div style="flex:1"><div class="student-name">'+s.n+'</div><div class="student-level"><span class="tag '+lvlTag[s.l]+'">'+s.l+'</span></div></div><div class="student-prog"><div class="student-xp">'+s.xp+' XP</div><div class="student-streak">'+(s.streak>0?'🔥 '+s.streak+' day streak':'No recent activity')+'</div></div><button class="btn btn-o btn-sm" style="margin-left:10px" onclick="showAlert(\'Progress report opened for '+s.n+'!\')">View</button></div>';
-  });
-  document.getElementById('student-list').innerHTML=h;
+// TEACHER NAV
+var TTITLES={'TS-overview':'Overview','TS-students':'Students','TS-lessons':'Lessons','TS-questions':'Questions','TS-videos':'Videos','TS-reports':'Progress Reports'};
+function tGoTab(id,btn){
+  document.querySelectorAll('#teacher-app .SCR').forEach(function(s){s.classList.remove('ON');});
+  var s=document.getElementById(id);if(s)s.classList.add('ON');
+  document.querySelectorAll('#teacher-app .snb').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  document.getElementById('t-tb-title').textContent=TTITLES[id]||'Dashboard';
 }
 
-var MODALS={
-  'add-student':'<div class="modal-h"><div class="modal-title">Add new student</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-group"><label class="form-label">FULL NAME</label><input class="form-input" placeholder="e.g. Juan dela Cruz"></div><div class="form-row"><div class="form-group"><label class="form-label">LEVEL</label><select class="form-select"><option>Elementary</option><option>JHS</option><option>SHS 11</option><option>SHS 12</option></select></div><div class="form-group"><label class="form-label">CONTACT NUMBER</label><input class="form-input" placeholder="09xx-xxx-xxxx"></div></div><div class="form-group"><label class="form-label">EMAIL (optional)</label><input class="form-input" type="email" placeholder="student@email.com"></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Student added and login credentials sent!\')">Add Student</button></div>',
-  'add-lesson':'<div class="modal-h"><div class="modal-title">Add new lesson</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-row"><div class="form-group"><label class="form-label">SUBJECT</label><select class="form-select"><option>Mathematics</option><option>English</option><option>Filipino</option><option>Science</option><option>Self & Society</option><option>Life & Career</option><option>Digital Skills</option></select></div><div class="form-group"><label class="form-label">LEVEL</label><select class="form-select"><option>Elementary (EL)</option><option>JHS</option><option>SHS Grade 11</option><option>SHS Grade 12</option></select></div></div><div class="form-group"><label class="form-label">LESSON TITLE</label><input class="form-input" placeholder="e.g. Fraction Operations"></div><div class="form-group"><label class="form-label">LESSON CONTENT (HTML)</label><textarea class="form-textarea" style="min-height:120px" placeholder="&lt;h4&gt;What is a fraction?&lt;/h4&gt;&#10;&lt;p&gt;A fraction shows a part of a whole...&lt;/p&gt;&#10;&lt;ul&gt;&lt;li&gt;Numerator (top)&lt;/li&gt;&lt;li&gt;Denominator (bottom)&lt;/li&gt;&lt;/ul&gt;"></textarea></div><div class="form-row"><div class="form-group"><label class="form-label">XP REWARD</label><input class="form-input" type="number" value="20"></div><div class="form-group"><label class="form-label">STATUS</label><select class="form-select"><option>Draft</option><option>Published</option></select></div></div><div class="form-group"><label class="form-label">FILIPINO LANGUAGE LESSON?</label><select class="form-select"><option>No — respond in English</option><option>Yes — respond in Filipino</option></select></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-p" onclick="closeModalDirect();showAlert(\'Lesson saved as draft!\')">Save Draft</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Lesson published successfully!\')">Publish</button></div>',
-  'edit-lesson':'<div class="modal-h"><div class="modal-title">Edit lesson</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-group"><label class="form-label">LESSON TITLE</label><input class="form-input" value="Fraction Operations"></div><div class="form-group"><label class="form-label">LESSON CONTENT (HTML)</label><textarea class="form-textarea" style="min-height:120px">&lt;h4&gt;What is a fraction?&lt;/h4&gt;\n&lt;p&gt;A fraction shows a part of a whole...&lt;/p&gt;</textarea></div><div class="form-row"><div class="form-group"><label class="form-label">SUBJECT</label><select class="form-select"><option selected>Mathematics</option><option>English</option><option>Filipino</option></select></div><div class="form-group"><label class="form-label">LEVEL</label><select class="form-select"><option selected>Elementary (EL)</option><option>JHS</option></select></div></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Lesson updated successfully!\')">Save Changes</button></div>',
-  'add-question':'<div class="modal-h"><div class="modal-title">Add quiz question</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-group"><label class="form-label">LESSON</label><select class="form-select"><option>Fraction Operations</option><option>Subject-Verb Agreement</option><option>Pagbabasa at Pagsusulat</option><option>Introduction to Algebra</option><option>General Mathematics</option></select></div><div class="form-group"><label class="form-label">QUESTION TEXT</label><textarea class="form-textarea" placeholder="Type the question here..."></textarea></div><div class="form-group"><label class="form-label">ANSWER OPTIONS</label><div class="opt-row"><span class="opt-label">A.</span><input class="form-input" placeholder="Option A" style="flex:1"><input type="radio" name="correct" value="a" style="margin-left:8px"><span class="correct-radio">Correct</span></div><div class="opt-row"><span class="opt-label">B.</span><input class="form-input" placeholder="Option B" style="flex:1"><input type="radio" name="correct" value="b" style="margin-left:8px"><span class="correct-radio">Correct</span></div><div class="opt-row"><span class="opt-label">C.</span><input class="form-input" placeholder="Option C" style="flex:1"><input type="radio" name="correct" value="c" style="margin-left:8px"><span class="correct-radio">Correct</span></div><div class="opt-row"><span class="opt-label">D.</span><input class="form-input" placeholder="Option D" style="flex:1"><input type="radio" name="correct" value="d" style="margin-left:8px"><span class="correct-radio">Correct</span></div></div><div class="form-group"><label class="form-label">EXPLANATION (shown after answering)</label><input class="form-input" placeholder="e.g. ¾ + 2/4 = 5/4 = 1¼"></div><div class="form-group"><label class="form-label">DIFFICULTY</label><select class="form-select"><option>Easy</option><option>Medium</option><option>Hard</option></select></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Question added successfully!\')">Add Question</button></div>',
-  'add-video':'<div class="modal-h"><div class="modal-title">Add YouTube video</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="alert alert-g" style="font-size:12px">Paste the YouTube video ID — the part after <b>?v=</b> in the URL.<br>Example: youtube.com/watch?v=<b>abc123XYZ</b> → ID is <b>abc123XYZ</b></div><div class="form-group"><label class="form-label">YOUTUBE VIDEO ID</label><input class="form-input" id="yt-id-input" placeholder="e.g. n0DODiQMHo8" oninput="previewYT(this.value)"><div id="yt-preview" style="margin-top:8px;display:none"><img id="yt-prev-img" style="width:160px;height:90px;border-radius:10px;border:2px solid var(--bd);object-fit:cover" alt="Preview"></div></div><div class="form-group"><label class="form-label">VIDEO TITLE</label><input class="form-input" placeholder="e.g. Understanding Fractions — DepEd TV"></div><div class="form-group"><label class="form-label">LESSON</label><select class="form-select"><option>Fraction Operations</option><option>Subject-Verb Agreement</option><option>Pagbabasa at Pagsusulat</option><option>Introduction to Algebra</option><option>General Mathematics</option></select></div><div class="form-row"><div class="form-group"><label class="form-label">CHANNEL NAME</label><input class="form-input" placeholder="e.g. DepEd TV"></div><div class="form-group"><label class="form-label">DURATION</label><input class="form-input" placeholder="e.g. 5:24"></div></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Video added successfully!\')">Add Video</button></div>'
+// LESSON DATA
+var DB={
+frac:{title:'Fraction Operations',badge:'LS 3 Math · EL',isFil:false,videos:[{id:'n0DODiQMHo8',title:'Understanding Fractions',ch:'DepEd TV',dur:'5:24'},{id:'jHEkGD4GCv4',title:'Adding Fractions Step by Step',ch:'Math Guro PH',dur:'7:12'}],content:'<h4>What is a fraction?</h4><p>A fraction shows a part of a whole — <strong>numerator</strong> (top) over <strong>denominator</strong> (bottom).</p><h4>Same denominator</h4><p>1/4 + 2/4 = 3/4 — add numerators, keep denominator.</p><h4>Different denominators</h4><p>1/2 + 1/3 → find LCD (6) → 3/6 + 2/6 = 5/6</p><h4>Real-life example</h4><p>You eat 1/4 of a pizza, friend eats 2/4 — together you ate 3/4!</p>',quiz:[{q:'What is ¾ + ½?',opts:['1','1¼','1½','2'],ans:1,exp:'¾ + 2/4 = 5/4 = 1¼'},{q:'What is the LCD of ½ and ⅓?',opts:['2','3','6','9'],ans:2,exp:'LCD of 2 and 3 is 6.'}],asks:['Explain fractions using pesos and centavos for ALS Elementary.','What is the LCD and how do I find it step by step?','Give me 3 fraction practice problems with solutions.']},
+sva:{title:'Subject-Verb Agreement',badge:'LS 1 English · JHS',isFil:false,videos:[{id:'VIDEO_ID_1',title:'Subject-Verb Agreement Basics',ch:'English Guro PH',dur:'6:30'}],content:'<h4>The rule</h4><p>The verb must match its subject in number.</p><h4>Singular → singular verb</h4><p>She <u>reads</u> every day. The student <u>studies</u> hard.</p><h4>Plural → plural verb</h4><p>They <u>read</u> every day. The students <u>study</u> hard.</p><h4>Key tip</h4><p>Add <strong>-s or -es</strong> to the verb when the subject is he, she, or it.</p>',quiz:[{q:'Choose: "The children ___ in the park."',opts:['plays','play','playing','played'],ans:1,exp:'"Children" is plural — use "play" without -s.'},{q:'Choose: "She ___ to school every day."',opts:['go','goes','going','gone'],ans:1,exp:'"She" is singular — use "goes".'}],asks:['Give me 5 practice sentences on subject-verb agreement for ALS JHS.','What are common exceptions to subject-verb agreement?','How do I tell if a subject is singular or plural?']},
+pagbasa:{title:'Pagbabasa at Pagsusulat',badge:'LS 1 Filipino · EL',isFil:true,videos:[{id:'VIDEO_ID_2',title:'Pagbabasa — Simpleng Kwento',ch:'DepEd TV',dur:'4:33'}],content:'<h4>Bakit mahalaga ang pagbabasa?</h4><p>Tumutulong ito sa pag-unawa ng mga mensahe at impormasyon sa ating pang-araw-araw na buhay.</p><h4>Mga hakbang sa pagbabasa</h4><ul><li>Tingnan ang pamagat at mga larawan</li><li>Basahin nang dahan-dahan</li><li>Hanapin ang pangunahing ideya</li><li>Sagutin ang mga tanong</li></ul><h4>Simpleng pangungusap</h4><p>Paksa + Pandiwa + Katawagan. Halimbawa: <em>Kumain si Maria ng mansanas.</em></p>',quiz:[{q:'Alin ang tamang pangungusap?',opts:['Kumain si Juan ng tinapay.','Si Juan kumain tinapay.','Tinapay kumain Juan.','Kumain tinapay.'],ans:0,exp:'Tamang ayos: Pandiwa + Paksa + Bagay.'}],asks:['Ipaliwanag ang paksa at pandiwa. Magbigay ng halimbawa.','Paano ko mahahanap ang pangunahing ideya ng isang talata?','Magbigay ng 5 simpleng pangungusap para sa ALS Elementary.']},
+'comm-el':{title:'Communication Skills (EL)',badge:'LS 1 · EL',isFil:false,videos:[],content:'<h4>Filipino — basic literacy</h4><p>Reading simple stories, identifying main ideas, writing short sentences.</p><h4>English — vocabulary & sentences</h4><p>Building everyday vocabulary, constructing Subject + Verb + Object sentences.</p>',quiz:[{q:'What is the "main idea" of a paragraph?',opts:['The title','The most important point','The author name','Number of sentences'],ans:1,exp:'Main idea = central message of the paragraph.'}],asks:['How do I find the main idea of a paragraph for ALS Elementary?','Teach me 10 useful English vocabulary words for daily life.']},
+'sci-el':{title:'Scientific Literacy (EL)',badge:'LS 2 · EL',isFil:false,videos:[],content:'<h4>The human body</h4><p>Major systems: digestive, respiratory, circulatory, skeletal.</p><h4>Hygiene</h4><p>Washing hands with soap removes germs and prevents illness.</p><h4>3Rs</h4><p><strong>Reduce, Reuse, Recycle</strong> — protect our environment.</p>',quiz:[{q:'Why is washing hands with soap important?',opts:['Looks nice','Removes harmful germs','Required by DepEd','Helps plants'],ans:1,exp:'Soap removes bacteria and viruses, preventing diseases.'}],asks:['Explain the 5 organ systems for ALS Elementary Science.','What are the 3Rs? Give Philippine examples.']},
+'life-el':{title:'Life and Career Skills (EL)',badge:'LS 4 · EL',isFil:false,videos:[],content:'<h4>Needs vs wants</h4><p><strong>Needs</strong>: food, shelter, clothing. <strong>Wants</strong>: toys, gadgets. Always meet needs first.</p><h4>Saving money</h4><p>Saving ₱5 a day = ₱1,825 in a year!</p>',quiz:[{q:'Save ₱10/day — how much in 30 days?',opts:['₱150','₱200','₱300','₱400'],ans:2,exp:'₱10 × 30 = ₱300.'}],asks:['Explain needs vs wants for ALS Elementary with Filipino examples.','Give practical money-saving tips for ALS Elementary students.']},
+'soc-el':{title:'Self and Society (EL)',badge:'LS 5 · EL',isFil:false,videos:[],content:'<h4>Family roles</h4><p>Parents provide care. Children study and help at home. Grandparents share wisdom.</p><h4>Philippine geography</h4><p>7,641 islands in 3 groups: <strong>Luzon</strong>, <strong>Visayas</strong>, <strong>Mindanao</strong>.</p>',quiz:[{q:'How many major island groups does the PH have?',opts:['2','3','4','5'],ans:1,exp:'Luzon, Visayas, and Mindanao.'}],asks:['Tell me about the 3 major island groups of the Philippines.','What are PH national symbols and their significance?']},
+'dig-el':{title:'Digital Citizenship (EL)',badge:'LS 6 · EL',isFil:false,videos:[],content:'<h4>Parts of a computer</h4><ul><li><strong>Monitor</strong> — screen</li><li><strong>Keyboard</strong> — typing</li><li><strong>Mouse</strong> — clicking</li><li><strong>CPU</strong> — the brain</li></ul><h4>Turning off safely</h4><p>Start → Shut Down → wait. Never just pull the cord!</p>',quiz:[{q:'Which part is the "brain" of the computer?',opts:['Monitor','Keyboard','CPU','Mouse'],ans:2,exp:'CPU processes all data and instructions.'}],asks:['Explain computer parts simply for ALS Elementary.','Why should we never just unplug a computer?']},
+'comm-jhs':{title:'Communication Skills (JHS)',badge:'LS 1 · JHS',isFil:false,videos:[],content:'<h4>Filipino — essays & debate</h4><p>Analyzing literature, writing essays, formal debating.</p><h4>English — grammar & reports</h4><p>Advanced grammar, writing reports, critical reading.</p><h4>Essay structure</h4><ul><li>Introduction — thesis</li><li>Body — evidence</li><li>Conclusion — summary</li></ul>',quiz:[{q:'Which part of an essay presents the main argument?',opts:['Conclusion','Body','Introduction','Title'],ans:2,exp:'The introduction presents the thesis.'}],asks:['How to write a strong essay introduction for ALS JHS?','Most important grammar rules for JHS ALS students?']},
+'sci-jhs':{title:'Scientific Literacy (JHS)',badge:'LS 2 · JHS',isFil:false,videos:[],content:'<h4>Climate change</h4><p>Caused by burning fossil fuels. In PH: stronger typhoons, rising seas.</p><h4>Genetics</h4><p>Traits pass through genes. Dominant = appears more; Recessive = can be hidden.</p>',quiz:[{q:'Main human cause of climate change?',opts:['Planting trees','Burning fossil fuels','Drinking water','Recycling'],ans:1,exp:'Burning coal/oil releases CO₂, warming the planet.'}],asks:['Explain climate change using PH typhoon examples.','Dominant vs recessive traits — give a simple example.']},
+alg:{title:'Mathematical Skills — Algebra',badge:'LS 3 Math · JHS',isFil:false,videos:[{id:'VIDEO_ID_3',title:'Intro to Algebra — Jeepney Example',ch:'Math Teacher Guro',dur:'6:45'}],content:'<h4>What is algebra?</h4><p>Uses <strong>variables</strong> (like x) to represent unknowns.</p><h4>Solving equations</h4><p>x + 5 = 10 → x = 5. &nbsp; 3x = 12 → x = 4</p><h4>Philippine example</h4><p>Jeepney had x passengers. 3 got off, 8 remain. x − 3 = 8 → x = 11.</p>',quiz:[{q:'Solve: x + 7 = 15. x = ?',opts:['6','7','8','22'],ans:2,exp:'x = 15 − 7 = 8.'},{q:'Solve: 3x = 18. x = ?',opts:['3','5','6','9'],ans:2,exp:'x = 18 ÷ 3 = 6.'}],asks:['Explain algebra with real-life Filipino examples for ALS JHS.','Give me 5 algebra practice problems with solutions.']},
+'life-jhs':{title:'Life and Career Skills (JHS)',badge:'LS 4 · JHS',isFil:false,videos:[],content:'<h4>Entrepreneurship</h4><p>Identify need → create product → sell → earn profit. Example: selling kakanin.</p><h4>Employment rights</h4><p>Labor Code: minimum wage, 8-hour day, rest days, safe conditions.</p>',quiz:[{q:'What is profit?',opts:['Total sales','Total expenses','Sales minus expenses','Items sold'],ans:2,exp:'Profit = Revenue − Expenses.'}],asks:['How to start a small business in the Philippines? For ALS JHS.','Basic rights of Filipino workers under the Labor Code?']},
+'soc-jhs':{title:'Self and Society (JHS)',badge:'LS 5 · JHS',isFil:false,videos:[],content:'<h4>1987 PH Constitution</h4><p>Supreme law ratified Feb 2, 1987. 3 branches: Executive, Legislative, Judicial.</p><h4>Human rights</h4><p>Right to life, liberty, security, education, free speech.</p>',quiz:[{q:'Year the PH Constitution was ratified?',opts:['1972','1986','1987','1990'],ans:2,exp:'Ratified February 2, 1987 under President Aquino.'}],asks:['Summarize the 1987 PH Constitution for ALS JHS.','Human rights examples relevant to Filipino youth.']},
+'dig-jhs':{title:'Digital Citizenship (JHS)',badge:'LS 6 · JHS',isFil:false,videos:[],content:'<h4>Productivity tools</h4><ul><li>Word — documents</li><li>Excel — spreadsheets</li><li>PowerPoint — presentations</li></ul><h4>Online safety</h4><ul><li>Never share personal info with strangers</li><li>Use strong passwords</li><li>Report cyberbullying</li></ul>',quiz:[{q:'Which tool creates slide presentations?',opts:['Word','Excel','PowerPoint','Notepad'],ans:2,exp:'PowerPoint is designed for slides.'}],asks:['How to use Microsoft Word to write an essay for ALS JHS?','Most important online safety rules for Filipino students?']},
+'shs11-comm':{title:'Oral Communication',badge:'SHS 11 · LS 1',isFil:false,videos:[],content:'<h4>Communication model</h4><p>Sender → Message → Channel → Receiver → Feedback.</p><h4>Speech acts</h4><p>Asserting, directing, expressing, committing.</p>',quiz:[{q:'Who SENDS the message in the communication model?',opts:['Receiver','Channel','Sender','Feedback'],ans:2,exp:'The sender encodes and transmits the message.'}],asks:['Explain communication models for SHS 11.','Types of speech acts with everyday Filipino examples.']},
+'shs11-sci':{title:'Earth and Life Science',badge:'SHS 11 · LS 2',isFil:false,videos:[],content:'<h4>Earth\'s structure</h4><p>Crust → Mantle → Outer core (liquid) → Inner core (solid). Tectonic plates cause earthquakes and volcanoes.</p><h4>Biodiversity</h4><p>Philippines is a megadiverse country — Philippine Eagle, tarsier, and thousands of endemic species.</p>',quiz:[{q:'Which layer of Earth is liquid?',opts:['Crust','Mantle','Outer core','Inner core'],ans:2,exp:'The outer core is liquid iron and nickel.'}],asks:['Why does the Philippines have many earthquakes and volcanoes?','Why is the Philippines megadiverse?']},
+'shs11-math':{title:'General Mathematics',badge:'SHS 11 · LS 3',isFil:false,videos:[],content:'<h4>Functions</h4><p>Each input has exactly one output. f(x) = 2x + 3 → f(5) = 13.</p><h4>Simple interest</h4><p>I = PRT. ₱10,000 at 5% for 2 years = ₱1,000 interest.</p>',quiz:[{q:'Simple interest: ₱5,000 at 4% for 2 years?',opts:['₱200','₱400','₱600','₱800'],ans:1,exp:'I = 5000 × 0.04 × 2 = ₱400'}],asks:['Explain functions and how to evaluate f(x) for SHS 11.','Simple vs compound interest with peso examples.']},
+'shs11-per':{title:'Personal Development',badge:'SHS 11 · LS 4',isFil:false,videos:[],content:'<h4>Self-awareness</h4><p>Knowing your strengths, weaknesses, values, and emotions. Tools: Johari Window, SWOT.</p><h4>SMART goals</h4><p>Specific, Measurable, Achievable, Relevant, Time-bound.</p>',quiz:[{q:'What does "S" in SMART goals stand for?',opts:['Simple','Specific','Strong','Standard'],ans:1,exp:'SMART = Specific, Measurable, Achievable, Relevant, Time-bound.'}],asks:['Explain the Johari Window for SHS 11 Personal Development.','How to set SMART goals? Give a Filipino student example.']},
+'shs11-soc':{title:'The Contemporary World',badge:'SHS 11 · LS 5',isFil:false,videos:[],content:'<h4>Globalization</h4><p>Increasing interconnection through trade, tech, culture. Pros: growth. Cons: inequality.</p><h4>Philippines in ASEAN</h4><p>Founding member of ASEAN (1967). OFW remittances are a major economic driver.</p>',quiz:[{q:'ASEAN stands for?',opts:['Asian-African Alliance','Assoc. of SE Asian Nations','Asian Social Alliance','Assembly of SE Nations'],ans:1,exp:'Founded 1967. Philippines is a founding member.'}],asks:['Explain globalization and its effects on the Philippines.','How do OFW remittances affect the Philippine economy?']},
+'shs11-dig':{title:'Empowerment Technologies',badge:'SHS 11 · LS 6',isFil:false,videos:[],content:'<h4>Cloud & ICT tools</h4><p>Google Drive (storage), Google Docs (collaboration), Trello (project management).</p><h4>Digital responsibility</h4><p>Know your digital footprint. Use social media responsibly and ethically.</p>',quiz:[{q:'Which is a cloud storage service?',opts:['Microsoft Word','Google Drive','VLC Player','Notepad'],ans:1,exp:'Google Drive stores files online, accessible from any device.'}],asks:['Explain cloud computing with examples from the Philippines.','What is a digital footprint and why does it matter?']},
+'shs12-comm':{title:'Creative Writing and Reading',badge:'SHS 12 · LS 1',isFil:false,videos:[],content:'<h4>Literary genres</h4><p>Fiction, non-fiction, poetry, drama. PH literature: Rizal, Balagtas, Nick Joaquin.</p><h4>Literary devices</h4><p>Metaphor, simile, personification, imagery, irony.</p>',quiz:[{q:'"The wind whispered secrets." What device is this?',opts:['Simile','Metaphor','Personification','Irony'],ans:2,exp:'Personification gives human qualities to non-human things.'}],asks:['Explain literary genres with Philippine examples for SHS 12.','Main literary devices with Filipino examples.']},
+'shs12-sci':{title:'Physical Science',badge:'SHS 12 · LS 2',isFil:false,videos:[],content:'<h4>Newton\'s 3 Laws</h4><p>(1) Objects stay at rest unless pushed. (2) F = ma. (3) Every action has equal opposite reaction.</p><h4>Ohm\'s Law</h4><p>V = IR. Philippines uses 220V — always be careful!</p>',quiz:[{q:'Newton\'s 2nd Law: F = ?',opts:['mv','ma','mc²','mg'],ans:1,exp:'F = mass × acceleration.'}],asks:["Newton's 3 Laws with Filipino real-life examples.",'Explain Ohm\'s Law and electrical safety for SHS 12.']},
+'shs12-math':{title:'Statistics and Probability',badge:'SHS 12 · LS 3',isFil:false,videos:[],content:'<h4>Central tendency</h4><p><strong>Mean</strong> (average), <strong>median</strong> (middle), <strong>mode</strong> (most frequent).</p><h4>Probability</h4><p>P(event) = favorable ÷ total. P(heads) = 1/2 = 50%.</p>',quiz:[{q:'MEAN of: 4, 6, 8, 10, 12?',opts:['6','7','8','10'],ans:2,exp:'(4+6+8+10+12)÷5 = 8'}],asks:['Explain mean, median, mode with Filipino examples for SHS 12.','How to calculate probability? Examples with coins or dice.']},
+'shs12-life':{title:'Work Immersion and Career',badge:'SHS 12 · LS 4',isFil:false,videos:[],content:'<h4>Resume writing</h4><p>Include: personal info, education, skills, experience. Keep it 1 page, clean, honest.</p><h4>In-demand careers</h4><p>Healthcare, IT, BPO, engineering, education, skilled trades.</p>',quiz:[{q:'Essential document to apply for a job?',opts:['Birth certificate','Resume/CV','Grade 12 card','Barangay clearance'],ans:1,exp:'Resume/CV summarizes your education, skills, and experience.'}],asks:['How to write a good resume for a first-time job applicant in PH?','Most in-demand careers in the Philippines right now?']},
+'shs12-soc':{title:'Philippine Politics and Governance',badge:'SHS 12 · LS 5',isFil:false,videos:[],content:'<h4>3 Branches</h4><p><strong>Executive</strong> (President), <strong>Legislative</strong> (Congress — makes laws), <strong>Judicial</strong> (Supreme Court).</p><h4>Elections</h4><p>Senators every 3 years. President/VP every 6 years. Voting is every citizen\'s right.</p>',quiz:[{q:'Which PH branch MAKES laws?',opts:['Executive','Legislative','Judicial','COMELEC'],ans:1,exp:'Congress (Senate + House) creates and passes laws.'}],asks:['Explain the 3 branches of PH government for SHS 12.','How does the Philippine election system work?']},
+'shs12-dig':{title:'Research and Media Literacy',badge:'SHS 12 · LS 6',isFil:false,videos:[],content:'<h4>Research methods</h4><p>Quantitative (numbers, surveys) vs Qualitative (interviews, observations).</p><h4>SIFT — spot fake news</h4><p>Stop → Investigate → Find better coverage → Trace claims.</p>',quiz:[{q:'"S" in SIFT stands for?',opts:['Search','Stop','Share','Source'],ans:1,exp:'Stop before you share! Then investigate the source.'}],asks:['Quantitative vs qualitative research with examples for SHS 12.','How to spot fake news — tips for Filipino social media users.']}
 };
 
-function openModal(key){
-  document.getElementById('modal-content').innerHTML=MODALS[key]||'';
-  document.getElementById('modal-bg').classList.add('on');
+var PQB=[
+  {q:'What is ¾ + ½?',opts:['1','1¼','1½','2'],ans:1,exp:'¾ + 2/4 = 5/4 = 1¼',s:'Math · EL'},
+  {q:'"The children ___ in the park."',opts:['plays','play','playing','played'],ans:1,exp:'"Children" is plural — use "play".',s:'English · JHS'},
+  {q:'Solve: 2x = 14. x = ?',opts:['5','6','7','8'],ans:2,exp:'x = 14 ÷ 2 = 7',s:'Math · JHS'},
+  {q:'Major island groups of the Philippines?',opts:['2','3','4','5'],ans:1,exp:'Luzon, Visayas, Mindanao.',s:'Society · EL'},
+  {q:'Simple interest: ₱5,000 at 4% for 2 years?',opts:['₱200','₱400','₱600','₱800'],ans:1,exp:'I = 5000×0.04×2 = ₱400',s:'Math · SHS 11'},
+  {q:'ASEAN stands for?',opts:['Asian-African Alliance','Assoc. of SE Asian Nations','Asian Social Alliance','Assembly of SE Nations'],ans:1,exp:'Founded 1967. PH is a founding member.',s:'Society · SHS 11'},
+  {q:'MEAN of: 4, 6, 8, 10, 12?',opts:['6','7','8','10'],ans:2,exp:'40÷5 = 8',s:'Math · SHS 12'},
+  {q:'Which PH branch MAKES laws?',opts:['Executive','Legislative','Judicial','COMELEC'],ans:1,exp:'Congress (Senate + House) creates laws.',s:'Gov · SHS 12'},
+  {q:'"The wind whispered secrets." — What literary device?',opts:['Simile','Metaphor','Personification','Irony'],ans:2,exp:'Personification gives human traits to non-human things.',s:'Creative Writing · SHS 12'},
+  {q:'"S" in SIFT fact-checking?',opts:['Search','Stop','Share','Source'],ans:1,exp:'Stop before you share! Then investigate.',s:'Digital · SHS 12'}
+];
+var pI=0;
+function renderPQ(){
+  var q=PQB[pI%PQB.length];
+  var h='<div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:10px"><div style="margin-bottom:7px"><span class="tag" style="background:var(--al);color:#7A4A00">'+q.s+'</span></div><div style="font-size:13px;font-weight:800;color:var(--tx);margin-bottom:10px;line-height:1.5">'+q.q+'</div>';
+  q.opts.forEach(function(o,i){h+='<button onclick="pickPQ(this,'+i+','+q.ans+',\''+q.exp.replace(/'/g,"\\'")+'\')\" style="display:block;width:100%;text-align:left;background:var(--bg);border:2px solid var(--bd);border-radius:10px;padding:9px 12px;font-size:12px;font-weight:800;cursor:pointer;margin-bottom:6px;font-family:\'Nunito\',sans-serif;color:var(--tx)">'+o+'</button>';});
+  h+='<div id="PQFB" style="display:none;font-size:12px;font-weight:800;margin-top:8px;padding:9px 12px;border-radius:10px"></div></div>';
+  document.getElementById('SPQ').innerHTML=h;
 }
-function closeModal(e){if(e.target===document.getElementById('modal-bg'))closeModalDirect();}
-function closeModalDirect(){document.getElementById('modal-bg').classList.remove('on');}
-function previewYT(id){
-  if(id.length>5){
-    document.getElementById('yt-preview').style.display='block';
-    document.getElementById('yt-prev-img').src='https://img.youtube.com/vi/'+id+'/hqdefault.jpg';
-  }else{document.getElementById('yt-preview').style.display='none';}
+function pickPQ(b,i,a,e){
+  document.querySelectorAll('#SPQ button').forEach(function(o){o.disabled=true;});
+  var fb=document.getElementById('PQFB');
+  if(i===a){b.style.background='var(--gl)';b.style.borderColor='var(--g)';b.style.color='#0A5C42';fb.style.background='var(--gl)';fb.style.color='#0A5C42';fb.textContent='✅ Correct! '+e;}
+  else{b.style.background='var(--pkl)';b.style.borderColor='var(--pk)';b.style.color='#8C1A36';fb.style.background='var(--pkl)';fb.style.color='#8C1A36';fb.textContent='❌ Not quite. '+e;}
+  fb.style.display='block';pI++;
 }
-function showAlert(msg){
-  var t=document.getElementById('toast');
-  t.textContent='✅ '+msg;
-  t.style.display='block';
-  setTimeout(function(){t.style.display='none';},2800);
+function nxtPQ(){renderPQ();}
+
+var PD=[{n:'Mathematics',p:68,c:'#5C35D9'},{n:'English',p:40,c:'#0DBF7E'},{n:'Science',p:55,c:'#7F77DD'},{n:'Filipino',p:43,c:'#0DBF7E'},{n:'Self & Society',p:25,c:'#F03E6B'},{n:'Life & Career',p:30,c:'#F5A623'},{n:'Digital Skills',p:10,c:'#8B80B8'}];
+function renderSProg(){
+  var h='';
+  PD.forEach(function(p){h+='<div class="psec"><div class="prn">'+p.n+'</div><div class="prp">'+p.p+'%</div><div class="pbar" style="height:6px"><div class="pfill" style="width:'+p.p+'%;background:'+p.c+'"></div></div></div>';});
+  document.getElementById('S-PROG').innerHTML=h;
 }
 
-buildStudents();
+function openLesson(key){
+  var d=DB[key];if(!d)return;
+  curK=key;
+  document.querySelectorAll('#student-app .SCR').forEach(function(s){s.classList.remove('ON');});
+  document.getElementById('S-BNAV').style.display='none';
+  var ov=document.getElementById('S-LOVERLAY');
+  ov.style.display='flex';ov.classList.add('on');
+  document.getElementById('S-LTITLE').textContent=d.title;
+  document.getElementById('S-LBADGE').textContent=d.badge;
+  document.getElementById('s-tb-title').textContent=d.title;
+  document.getElementById('S-LCONT').innerHTML='<div class="lc">'+d.content+'</div>';
+  // Videos
+  var vh='';
+  if(d.videos&&d.videos.length>0){
+    vh='<div style="font-size:13px;font-weight:900;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:7px"><span style="font-size:16px">▶</span> Video lessons <span style="font-size:10px;font-weight:700;color:var(--sub)">— opens YouTube</span></div><div class="vid-grid">';
+    d.videos.forEach(function(v){
+      vh+='<div class="vid-card" onclick="window.open(\'https://youtube.com/watch?v='+v.id+'\')"><div class="vid-thumb"><img src="https://img.youtube.com/vi/'+v.id+'/hqdefault.jpg" onerror="this.style.display=\'none\'" alt=""><div class="vid-play">▶</div><div class="vid-dur">'+v.dur+'</div></div><div class="vid-info"><div class="vid-title">'+v.title+'</div><div class="vid-ch">'+v.ch+'</div><div class="vid-yt">▶ Watch on YouTube</div></div></div>';
+    });
+    vh+='</div>';
+  }
+  document.getElementById('S-LVIDS').innerHTML=vh;
+  // Quiz
+  var qh='<div style="font-size:13px;font-weight:900;color:var(--tx);margin-bottom:10px;display:flex;align-items:center;gap:7px"><span style="font-size:16px">✏️</span> Check your understanding</div>';
+  d.quiz.forEach(function(qd,qi){
+    qh+='<div class="qbox"><div class="q-lbl">QUESTION '+(qi+1)+' OF '+d.quiz.length+'</div><div class="qq">'+qd.q+'</div>';
+    qd.opts.forEach(function(o,i){qh+='<button class="qo" onclick="pickLQ(this,'+i+','+qd.ans+',\''+qd.exp.replace(/'/g,"\\'")+'\',\'lqfb'+qi+'\')">'+o+'</button>';});
+    qh+='<div id="lqfb'+qi+'" class="fb" style="display:none"></div></div>';
+  });
+  document.getElementById('S-LQUIZ').innerHTML=qh;
+  // Asks
+  var ah='<div class="ask-lbl">SUGGESTED QUESTIONS</div>';
+  d.asks.forEach(function(a){ah+='<button class="askbtn" onclick="doAsk(\''+a.replace(/'/g,"\\'")+'\')">'+a.substring(0,48)+'... ↗</button>';});
+  document.getElementById('S-LASKS').innerHTML=ah;
+  var intro=d.isFil?'Kamusta! Ako ang iyong AI tutor para sa <strong>'+d.title+'</strong>. Magtanong ka ng kahit ano! 😊':'Hey! I\'m your AI tutor for <strong>'+d.title+'</strong>. Ask me anything — I\'ll keep it simple! 💪';
+  document.getElementById('S-CHATBOX').innerHTML='<div class="msg ai">'+intro+'</div>';
+  document.getElementById('S-CINP').placeholder=d.isFil?'Magtanong...':'Ask anything...';
+}
+function pickLQ(btn,idx,ans,exp,fbId){
+  var box=btn.closest('.qbox');
+  box.querySelectorAll('.qo').forEach(function(o){o.disabled=true;});
+  var fb=document.getElementById(fbId);
+  if(idx===ans){btn.classList.add('ok');fb.className='fb ok';fb.textContent='✅ Correct! '+exp;}
+  else{btn.classList.add('no');box.querySelectorAll('.qo')[ans].classList.add('ok');fb.className='fb no';fb.textContent='❌ Not quite. '+exp;}
+  fb.style.display='block';
+}
+function closeLesson(){
+  document.getElementById('S-LOVERLAY').classList.remove('on');
+  document.getElementById('S-LOVERLAY').style.display='none';
+  document.getElementById('S-BNAV').style.display='flex';
+  document.getElementById('SS-subjects').classList.add('ON');
+  document.getElementById('s-tb-title').textContent='Subjects';
+  document.querySelectorAll('#student-app .snb').forEach(function(b,i){b.classList.remove('on');if(i===1)b.classList.add('on');});
+  document.querySelectorAll('#S-BNAV .mnb').forEach(function(b,i){b.classList.remove('on');if(i===1)b.classList.add('on');});
+}
+function sendChat(){
+  var inp=document.getElementById('S-CINP');
+  var v=inp.value.trim();if(!v)return;
+  inp.value='';callAI(v);
+}
+function doAsk(q){callAI(q);}
+async function callAI(msg){
+  var box=document.getElementById('S-CHATBOX');
+  var d=DB[curK]||{};
+  box.innerHTML+='<div class="msg usr">'+msg+'</div>';
+  var tid='t'+Date.now();
+  box.innerHTML+='<div class="msg th" id="'+tid+'">Thinking...</div>';
+  box.scrollTop=box.scrollHeight;
+  document.getElementById('S-SBTN').disabled=true;
+  var sys='You are an energetic, encouraging AI tutor for ALS (Alternative Learning System) students in the Philippines. Current lesson: '+d.title+'. '+(d.isFil?'IMPORTANT: Always respond in Filipino/Tagalog. Short (3-4 sentences), clear, encouraging.':'Respond in English. Short (3-5 sentences), encouraging, simple. Use Philippine context when helpful (pesos, jeepney, sari-sari store). Be motivating!');
+  try{
+    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:sys,messages:[{role:'user',content:msg}]})});
+    var data=await r.json();
+    var reply=(data.content&&data.content[0]&&data.content[0].text)||'Sorry, could not get a response. Try again!';
+    var el=document.getElementById(tid);
+    if(el){el.className='msg ai';el.innerHTML=reply.replace(/\n/g,'<br>');}
+  }catch(e){
+    var el=document.getElementById(tid);
+    if(el){el.className='msg ai';el.textContent='Connection error. Please try again.';}
+  }
+  document.getElementById('S-SBTN').disabled=false;
+  box.scrollTop=box.scrollHeight;
+}
+
+// TEACHER FUNCTIONS
+var TSTU=[{n:'Juan dela Cruz',l:'EL',xp:620,streak:5,c:'#5C35D9',i:'JD'},{n:'Ana Lopez',l:'EL',xp:410,streak:3,c:'#0DBF7E',i:'AL'},{n:'Jose Bautista',l:'JHS',xp:290,streak:1,c:'#F5A623',i:'JB'},{n:'Maria Reyes',l:'JHS',xp:890,streak:0,c:'#F03E6B',i:'MR'},{n:'Pedro Santos',l:'SHS 11',xp:1240,streak:7,c:'#5C35D9',i:'PS'},{n:'Rosa Garcia',l:'SHS 12',xp:1820,streak:12,c:'#0DBF7E',i:'RG'},{n:'Carlos Dela Vega',l:'EL',xp:180,streak:2,c:'#F5A623',i:'CD'},{n:'Liza Manalo',l:'JHS',xp:560,streak:4,c:'#F03E6B',i:'LM'}];
+var LT={'EL':'tel','JHS':'tjhs','SHS 11':'tshs11','SHS 12':'tshs12'};
+function buildTStudents(){
+  var h='';
+  TSTU.forEach(function(s){h+='<div style="display:flex;align-items:center;gap:10px;background:var(--w);border:2px solid var(--bd);border-radius:12px;padding:11px 13px;margin-bottom:8px"><div style="width:34px;height:34px;border-radius:50%;background:'+s.c+';display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#fff;flex-shrink:0">'+s.i+'</div><div style="flex:1"><div style="font-size:13px;font-weight:800;color:var(--tx)">'+s.n+'</div><div style="margin-top:2px"><span class="tag '+LT[s.l]+'">'+s.l+'</span></div></div><div style="text-align:right;margin-right:10px"><div style="font-size:14px;font-weight:900;color:var(--p)">'+s.xp+' XP</div><div style="font-size:10px;font-weight:700;color:var(--sub)">'+(s.streak>0?'🔥 '+s.streak+' day streak':'No recent activity')+'</div></div><button class="btn btn-o btn-sm" onclick="showToast(\'Progress report opened for '+s.n+'!\')">View</button></div>';});
+  document.getElementById('T-STUDENTS').innerHTML=h;
+}
+var TMODALS={
+  'add-student':'<div class="modal-h"><div class="modal-title">Add new student</div><button class="close-x" onclick="closeTModalD()">×</button></div><div class="fgrp"><label class="fl">FULL NAME</label><input class="finp" placeholder="e.g. Juan dela Cruz"></div><div class="frow"><div class="fgrp"><label class="fl">LEVEL</label><select class="fsel"><option>Elementary</option><option>JHS</option><option>SHS 11</option><option>SHS 12</option></select></div><div class="fgrp"><label class="fl">CONTACT</label><input class="finp" placeholder="09xx-xxx-xxxx"></div></div><div class="fgrp"><label class="fl">EMAIL</label><input class="finp" type="email" placeholder="student@email.com"></div><div class="mfooter"><button class="btn btn-o" onclick="closeTModalD()">Cancel</button><button class="btn btn-g" onclick="closeTModalD();showToast(\'Student added and login sent!\')">Add Student</button></div>',
+  'add-lesson':'<div class="modal-h"><div class="modal-title">Add new lesson</div><button class="close-x" onclick="closeTModalD()">×</button></div><div class="frow"><div class="fgrp"><label class="fl">SUBJECT</label><select class="fsel"><option>Mathematics</option><option>English</option><option>Filipino</option><option>Science</option><option>Self & Society</option><option>Life & Career</option><option>Digital Skills</option></select></div><div class="fgrp"><label class="fl">LEVEL</label><select class="fsel"><option>Elementary</option><option>JHS</option><option>SHS 11</option><option>SHS 12</option></select></div></div><div class="fgrp"><label class="fl">LESSON TITLE</label><input class="finp" placeholder="e.g. Fraction Operations"></div><div class="fgrp"><label class="fl">CONTENT (HTML)</label><textarea class="fta" placeholder="&lt;h4&gt;What is a fraction?&lt;/h4&gt;&#10;&lt;p&gt;A fraction shows a part of a whole...&lt;/p&gt;"></textarea></div><div class="frow"><div class="fgrp"><label class="fl">XP REWARD</label><input class="finp" type="number" value="20"></div><div class="fgrp"><label class="fl">STATUS</label><select class="fsel"><option>Draft</option><option>Published</option></select></div></div><div class="fgrp"><label class="fl">LANGUAGE</label><select class="fsel"><option>English</option><option>Filipino/Tagalog</option></select></div><div class="mfooter"><button class="btn btn-o" onclick="closeTModalD()">Cancel</button><button class="btn btn-p" onclick="closeTModalD();showToast(\'Lesson saved as draft!\')">Save Draft</button><button class="btn btn-g" onclick="closeTModalD();showToast(\'Lesson published!\')">Publish</button></div>',
+  'edit-lesson':'<div class="modal-h"><div class="modal-title">Edit lesson</div><button class="close-x" onclick="closeTModalD()">×</button></div><div class="fgrp"><label class="fl">LESSON TITLE</label><input class="finp" value="Fraction Operations"></div><div class="fgrp"><label class="fl">CONTENT (HTML)</label><textarea class="fta">&lt;h4&gt;What is a fraction?&lt;/h4&gt;\n&lt;p&gt;A fraction shows a part of a whole...&lt;/p&gt;</textarea></div><div class="frow"><div class="fgrp"><label class="fl">SUBJECT</label><select class="fsel"><option>Mathematics</option><option>English</option></select></div><div class="fgrp"><label class="fl">LEVEL</label><select class="fsel"><option>Elementary</option><option>JHS</option></select></div></div><div class="mfooter"><button class="btn btn-o" onclick="closeTModalD()">Cancel</button><button class="btn btn-g" onclick="closeTModalD();showToast(\'Lesson updated!\')">Save Changes</button></div>',
+  'add-question':'<div class="modal-h"><div class="modal-title">Add quiz question</div><button class="close-x" onclick="closeTModalD()">×</button></div><div class="fgrp"><label class="fl">LESSON</label><select class="fsel"><option>Fraction Operations</option><option>Subject-Verb Agreement</option><option>Pagbabasa at Pagsusulat</option><option>Introduction to Algebra</option><option>General Mathematics</option></select></div><div class="fgrp"><label class="fl">QUESTION</label><textarea class="fta" style="min-height:60px" placeholder="Type your question here..."></textarea></div><div class="fgrp"><label class="fl">ANSWER OPTIONS — select the correct one</label><div style="display:flex;gap:8px;align-items:center;margin-bottom:7px"><span style="font-size:11px;font-weight:900;color:var(--p);width:18px">A.</span><input class="finp" placeholder="Option A" style="flex:1"><input type="radio" name="cr" style="margin-left:6px"></div><div style="display:flex;gap:8px;align-items:center;margin-bottom:7px"><span style="font-size:11px;font-weight:900;color:var(--p);width:18px">B.</span><input class="finp" placeholder="Option B" style="flex:1"><input type="radio" name="cr" style="margin-left:6px"></div><div style="display:flex;gap:8px;align-items:center;margin-bottom:7px"><span style="font-size:11px;font-weight:900;color:var(--p);width:18px">C.</span><input class="finp" placeholder="Option C" style="flex:1"><input type="radio" name="cr" style="margin-left:6px"></div><div style="display:flex;gap:8px;align-items:center;margin-bottom:7px"><span style="font-size:11px;font-weight:900;color:var(--p);width:18px">D.</span><input class="finp" placeholder="Option D" style="flex:1"><input type="radio" name="cr" style="margin-left:6px"></div></div><div class="fgrp"><label class="fl">EXPLANATION</label><input class="finp" placeholder="e.g. ¾ + 2/4 = 5/4 = 1¼"></div><div class="fgrp"><label class="fl">DIFFICULTY</label><select class="fsel"><option>Easy</option><option>Medium</option><option>Hard</option></select></div><div class="mfooter"><button class="btn btn-o" onclick="closeTModalD()">Cancel</button><button class="btn btn-g" onclick="closeTModalD();showToast(\'Question added!\')">Add Question</button></div>',
+  'add-video':'<div class="modal-h"><div class="modal-title">Add YouTube video</div><button class="close-x" onclick="closeTModalD()">×</button></div><div style="background:var(--gl);border:2px solid #9FE1CB;border-radius:10px;padding:9px 12px;font-size:12px;font-weight:700;color:#0A5C42;margin-bottom:12px">Paste the YouTube ID — the code after <b>?v=</b> in the YouTube URL.</div><div class="fgrp"><label class="fl">YOUTUBE VIDEO ID</label><input class="finp" id="YT-ID" placeholder="e.g. n0DODiQMHo8" oninput="prevYT(this.value)"><div id="YT-PREV" style="display:none;margin-top:8px"><img id="YT-IMG" style="width:160px;height:90px;border-radius:10px;border:2px solid var(--bd);object-fit:cover"></div></div><div class="fgrp"><label class="fl">VIDEO TITLE</label><input class="finp" placeholder="e.g. Understanding Fractions — DepEd TV"></div><div class="fgrp"><label class="fl">LESSON</label><select class="fsel"><option>Fraction Operations</option><option>Subject-Verb Agreement</option><option>Pagbabasa at Pagsusulat</option><option>Introduction to Algebra</option></select></div><div class="frow"><div class="fgrp"><label class="fl">CHANNEL NAME</label><input class="finp" placeholder="e.g. DepEd TV"></div><div class="fgrp"><label class="fl">DURATION</label><input class="finp" placeholder="e.g. 5:24"></div></div><div class="mfooter"><button class="btn btn-o" onclick="closeTModalD()">Cancel</button><button class="btn btn-g" onclick="closeTModalD();showToast(\'Video added!\')">Add Video</button></div>'
+};
+function openTModal(k){document.getElementById('T-MODAL-CONTENT').innerHTML=TMODALS[k]||'';document.getElementById('T-MODAL-BG').classList.add('on');}
+function closeTModal(e){if(e.target===document.getElementById('T-MODAL-BG'))closeTModalD();}
+function closeTModalD(){document.getElementById('T-MODAL-BG').classList.remove('on');}
+function prevYT(id){if(id.length>5){document.getElementById('YT-PREV').style.display='block';document.getElementById('YT-IMG').src='https://img.youtube.com/vi/'+id+'/hqdefault.jpg';}else{document.getElementById('YT-PREV').style.display='none';}}
+function showToast(msg){var t=document.getElementById('TOAST');t.textContent='✅ '+msg;t.style.display='block';setTimeout(function(){t.style.display='none';},2800);}
 </script>
