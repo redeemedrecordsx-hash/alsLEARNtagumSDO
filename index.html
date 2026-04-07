@@ -1,0 +1,388 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--p:#5C35D9;--pl:#EDE8FF;--pd:#4A28C4;--g:#0DBF7E;--gl:#D6FAF0;--a:#F5A623;--al:#FFF0DC;--pk:#F03E6B;--pkl:#FFE0E8;--bg:#F0EDFF;--w:#fff;--bd:#E2DEFF;--tx:#2D1A7A;--sub:#8B80B8}
+body{font-family:'Nunito',sans-serif;background:var(--bg);margin:0}
+.app{display:flex;height:100vh;min-height:640px}
+.side{width:210px;background:var(--p);display:flex;flex-direction:column;flex-shrink:0}
+.slogo{padding:16px;border-bottom:1px solid rgba(255,255,255,0.15)}
+.slogo-t{font-size:17px;font-weight:900;color:#fff}.slogo-t b{color:#FFD700}
+.slogo-s{font-size:10px;font-weight:700;color:rgba(255,255,255,0.55);margin-top:2px}
+.steacher{padding:11px 14px;border-bottom:1px solid rgba(255,255,255,0.15);display:flex;align-items:center;gap:9px}
+.savb{width:32px;height:32px;border-radius:50%;background:#FFD700;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#3A1F00;flex-shrink:0}
+.savn{font-size:11px;font-weight:800;color:#fff}
+.savr{font-size:10px;font-weight:700;color:rgba(255,255,255,0.6)}
+.snav{flex:1;padding:8px;display:flex;flex-direction:column;gap:1px;overflow-y:auto}
+.snav-s{font-size:9px;font-weight:900;color:rgba(255,255,255,0.4);padding:8px 8px 3px;letter-spacing:1px}
+.snb{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:10px;cursor:pointer;border:none;background:none;font-family:'Nunito',sans-serif;width:100%;text-align:left}
+.snb .ic{font-size:14px;width:18px;text-align:center;flex-shrink:0}
+.snb .lb{font-size:12px;font-weight:800;color:rgba(255,255,255,0.7)}
+.snb:hover{background:rgba(255,255,255,0.12)}
+.snb.on{background:rgba(255,255,255,0.2)}.snb.on .lb{color:#fff}
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.topbar{background:var(--w);border-bottom:2px solid var(--bd);padding:0 18px;height:50px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.tb-t{font-size:15px;font-weight:900;color:var(--tx)}
+.tb-r{display:flex;align-items:center;gap:8px}
+.chip{font-size:11px;font-weight:800;padding:4px 11px;border-radius:20px}
+.chip-g{background:var(--gl);color:#0A5C42}
+.chip-p{background:var(--pl);color:#3C2A9A}
+.content{flex:1;overflow-y:auto;padding:18px}
+.SCR{display:none}.SCR.ON{display:block}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.sv{background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:13px;text-align:center}
+.svn{font-size:24px;font-weight:900;color:var(--p)}
+.svl{font-size:10px;font-weight:800;color:var(--sub);margin-top:2px}
+.sechead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.sectitle{font-size:14px;font-weight:900;color:var(--tx)}
+.btn{padding:8px 16px;font-size:12px;font-weight:800;border-radius:20px;cursor:pointer;font-family:'Nunito',sans-serif;border:2px solid}
+.btn-p{background:var(--p);color:#fff;border-color:var(--p)}
+.btn-o{background:var(--w);color:var(--p);border-color:var(--p)}
+.btn-g{background:var(--g);color:#fff;border-color:var(--g)}
+.btn-r{background:var(--pk);color:#fff;border-color:var(--pk)}
+.btn-sm{padding:5px 11px;font-size:11px}
+.table-wrap{background:var(--w);border:2px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:12px}
+.table-wrap th{background:var(--p);color:#fff;font-weight:900;padding:10px 12px;text-align:left;font-size:11px}
+.table-wrap td{padding:9px 12px;border-top:1px solid var(--bd);font-weight:700;color:var(--tx);vertical-align:middle}
+.table-wrap tr:hover td{background:#FAFAFF}
+.tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:8px}
+.tel{background:var(--pl);color:#3C2A9A}.tjhs{background:var(--gl);color:#0A5C42}
+.tshs11{background:var(--al);color:#7A4A00}.tshs12{background:var(--pkl);color:#8C1A36}
+.tpub{background:var(--gl);color:#0A5C42}.tdraft{background:var(--al);color:#7A4A00}
+.action-row{display:flex;gap:5px}
+.modal-bg{display:none;position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(20,10,60,0.55);z-index:100;align-items:center;justify-content:center;min-height:640px}
+.modal-bg.on{display:flex}
+.modal{background:var(--w);border-radius:16px;border:2px solid var(--bd);padding:20px;width:520px;max-width:95%;max-height:85vh;overflow-y:auto}
+.modal-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-title{font-size:15px;font-weight:900;color:var(--tx)}
+.close-btn{background:none;border:none;font-size:20px;cursor:pointer;color:var(--sub);font-family:'Nunito',sans-serif;line-height:1}
+.form-group{margin-bottom:13px}
+.form-label{font-size:11px;font-weight:900;color:var(--sub);margin-bottom:5px;display:block;letter-spacing:.5px}
+.form-input{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg)}
+.form-input:focus{outline:none;border-color:var(--p)}
+.form-select{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg)}
+.form-textarea{width:100%;padding:9px 12px;border:2px solid var(--bd);border-radius:10px;font-size:12px;font-weight:700;font-family:'Nunito',sans-serif;color:var(--tx);background:var(--bg);resize:vertical;min-height:80px;line-height:1.6}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt-row{display:flex;gap:8px;align-items:center;margin-bottom:7px}
+.opt-label{font-size:11px;font-weight:900;color:var(--p);width:20px;flex-shrink:0}
+.correct-radio{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:800;color:var(--sub);white-space:nowrap}
+.modal-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;padding-top:14px;border-top:2px solid var(--bd)}
+.progress-bar-wrap{background:var(--bg);border-radius:6px;height:6px;overflow:hidden;margin-top:4px;width:100px;display:inline-block;vertical-align:middle}
+.progress-bar-fill{height:100%;border-radius:6px;background:var(--p)}
+.yt-prev{width:80px;height:50px;border-radius:8px;object-fit:cover;border:2px solid var(--bd);background:var(--p);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;overflow:hidden}
+.yt-prev img{width:100%;height:100%;object-fit:cover}
+.alert{padding:10px 14px;border-radius:10px;font-size:12px;font-weight:800;margin-bottom:12px}
+.alert-g{background:var(--gl);color:#0A5C42;border:2px solid #9FE1CB}
+.alert-r{background:var(--pkl);color:#8C1A36;border:2px solid #F4C0D1}
+.student-row{display:flex;align-items:center;gap:10px;background:var(--w);border:2px solid var(--bd);border-radius:12px;padding:11px 13px;margin-bottom:8px}
+.student-av{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;flex-shrink:0}
+.student-name{font-size:13px;font-weight:800;color:var(--tx)}
+.student-level{font-size:10px;font-weight:700;color:var(--sub);margin-top:1px}
+.student-prog{margin-left:auto;text-align:right}
+.student-xp{font-size:14px;font-weight:900;color:var(--p)}
+.student-streak{font-size:10px;font-weight:700;color:var(--sub)}
+.mini-chart{display:flex;align-items:flex-end;gap:3px;height:40px;margin-top:8px}
+.bar{background:var(--p);border-radius:3px 3px 0 0;width:20px;opacity:.8;transition:height .3s}
+.bar:hover{opacity:1}
+.tip{background:var(--pl);border:2px solid var(--bd);border-radius:10px;padding:10px 12px;font-size:11px;font-weight:700;color:var(--tx);margin-bottom:12px;line-height:1.6}
+.tip b{color:var(--p)}
+</style>
+
+<div class="app" style="position:relative">
+
+<div class="side">
+  <div class="slogo">
+    <div class="slogo-t">ALS<b>Learn</b><span style="color:#A78BFF">PH</span></div>
+    <div class="slogo-s">Teacher Dashboard</div>
+  </div>
+  <div class="steacher">
+    <div class="savb">TC</div>
+    <div><div class="savn">Teacher Cruz</div><div class="savr">ALS Facilitator</div></div>
+  </div>
+  <div class="snav">
+    <div class="snav-s">OVERVIEW</div>
+    <button class="snb on" onclick="goTab('S-overview',this)"><span class="ic">📊</span><span class="lb">Overview</span></button>
+    <button class="snb" onclick="goTab('S-students',this)"><span class="ic">👥</span><span class="lb">Students</span></button>
+    <div class="snav-s" style="margin-top:6px">CONTENT</div>
+    <button class="snb" onclick="goTab('S-lessons',this)"><span class="ic">📖</span><span class="lb">Lessons</span></button>
+    <button class="snb" onclick="goTab('S-questions',this)"><span class="ic">✏️</span><span class="lb">Questions</span></button>
+    <button class="snb" onclick="goTab('S-videos',this)"><span class="ic">▶</span><span class="lb">Videos</span></button>
+    <div class="snav-s" style="margin-top:6px">MANAGE</div>
+    <button class="snb" onclick="goTab('S-progress',this)"><span class="ic">📈</span><span class="lb">Progress Reports</span></button>
+    <button class="snb" onclick="goTab('S-settings',this)"><span class="ic">⚙️</span><span class="lb">Settings</span></button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="topbar">
+    <div class="tb-t" id="tb-title">Overview</div>
+    <div class="tb-r">
+      <div class="chip chip-g">● Live</div>
+      <div class="chip chip-p">A&E Elementary & JHS</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- OVERVIEW -->
+    <div id="S-overview" class="SCR ON">
+      <div class="stats">
+        <div class="sv"><div class="svn">48</div><div class="svl">Total students</div></div>
+        <div class="sv"><div class="svn" style="color:#0DBF7E">24</div><div class="svl">Active today</div></div>
+        <div class="sv"><div class="svn" style="color:#F5A623">312</div><div class="svl">Lessons completed</div></div>
+        <div class="sv"><div class="svn" style="color:#F03E6B">6</div><div class="svl">Need attention</div></div>
+      </div>
+      <div class="form-row" style="margin-bottom:16px">
+        <div>
+          <div class="sectitle" style="margin-bottom:10px">Weekly activity</div>
+          <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px">
+            <div class="mini-chart">
+              <div class="bar" style="height:22px" title="Mon: 11"></div>
+              <div class="bar" style="height:30px" title="Tue: 15"></div>
+              <div class="bar" style="height:18px" title="Wed: 9"></div>
+              <div class="bar" style="height:36px" title="Thu: 18"></div>
+              <div class="bar" style="height:28px" title="Fri: 14"></div>
+              <div class="bar" style="height:10px;opacity:.4" title="Sat: 5"></div>
+              <div class="bar" style="height:8px;opacity:.3" title="Sun: 4"></div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:6px">
+              <span style="font-size:10px;font-weight:700;color:var(--sub)">Mon</span>
+              <span style="font-size:10px;font-weight:700;color:var(--sub)">Tue</span>
+              <span style="font-size:10px;font-weight:700;color:var(--sub)">Wed</span>
+              <span style="font-size:10px;font-weight:700;color:var(--sub)">Thu</span>
+              <span style="font-size:10px;font-weight:700;color:var(--sub);margin-left:4px">Fri</span>
+              <span style="font-size:10px;font-weight:700;color:var(--sub);margin-left:6px">Sat</span>
+              <span style="font-size:10px;font-weight:700;color:var(--sub);margin-left:4px">Sun</span>
+            </div>
+            <div style="font-size:11px;font-weight:700;color:var(--sub);margin-top:6px">Total lessons this week: <b style="color:var(--p)">75</b></div>
+          </div>
+        </div>
+        <div>
+          <div class="sectitle" style="margin-bottom:10px">Students needing attention</div>
+          <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:12px">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:var(--pkl);border-radius:10px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#F03E6B;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">MR</div>
+                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#8C1A36">Maria Reyes</div><div style="font-size:10px;font-weight:700;color:#C0254F">No activity for 5 days</div></div>
+                <button class="btn btn-r btn-sm" onclick="showAlert('Message sent to Maria Reyes!')">Message</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:#FFF0DC;border-radius:10px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">JB</div>
+                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#7A4A00">Jose Bautista</div><div style="font-size:10px;font-weight:700;color:#854F0B">Struggling with Math (32%)</div></div>
+                <button class="btn btn-sm" style="background:#F5A623;color:#fff;border-color:#F5A623" onclick="showAlert('Extra Math resources sent to Jose!')">Help</button>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;padding:8px;background:#FFF0DC;border-radius:10px">
+                <div style="width:28px;height:28px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;flex-shrink:0">AL</div>
+                <div style="flex:1"><div style="font-size:12px;font-weight:800;color:#7A4A00">Ana Lopez</div><div style="font-size:10px;font-weight:700;color:#854F0B">Quiz score below 50% x3</div></div>
+                <button class="btn btn-sm" style="background:#F5A623;color:#fff;border-color:#F5A623" onclick="showAlert('Review session scheduled for Ana!')">Help</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sectitle" style="margin-bottom:10px">Subject completion rates</div>
+      <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:14px">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Mathematics</span><span style="font-size:12px;font-weight:900;color:var(--p)">68%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:68%;height:100%;background:var(--p);border-radius:5px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">English</span><span style="font-size:12px;font-weight:900;color:#0DBF7E">52%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:52%;height:100%;background:#0DBF7E;border-radius:5px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Filipino</span><span style="font-size:12px;font-weight:900;color:#0DBF7E">61%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:61%;height:100%;background:#0DBF7E;border-radius:5px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Science</span><span style="font-size:12px;font-weight:900;color:var(--p)">44%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:44%;height:100%;background:var(--p);border-radius:5px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Self & Society</span><span style="font-size:12px;font-weight:900;color:#F5A623">35%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:35%;height:100%;background:#F5A623;border-radius:5px"></div></div></div>
+          <div><div style="display:flex;justify-content:space-between;margin-bottom:4px"><span style="font-size:12px;font-weight:800;color:var(--tx)">Digital Skills</span><span style="font-size:12px;font-weight:900;color:#F03E6B">22%</span></div><div style="background:var(--bg);height:8px;border-radius:5px;overflow:hidden"><div style="width:22%;height:100%;background:#F03E6B;border-radius:5px"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDENTS -->
+    <div id="S-students" class="SCR">
+      <div class="sechead">
+        <div class="sectitle">All students (48)</div>
+        <button class="btn btn-p" onclick="openModal('add-student')">+ Add Student</button>
+      </div>
+      <div class="tip"><b>Tip:</b> Click any student row to see their full progress report and send a message.</div>
+      <div id="student-list"></div>
+    </div>
+
+    <!-- LESSONS -->
+    <div id="S-lessons" class="SCR">
+      <div class="sechead">
+        <div class="sectitle">Lessons</div>
+        <button class="btn btn-p" onclick="openModal('add-lesson')">+ Add Lesson</button>
+      </div>
+      <div class="tip"><b>Tip:</b> Each lesson belongs to a subject and level. Add HTML content — use &lt;h4&gt; for headings, &lt;p&gt; for paragraphs, &lt;ul&gt;&lt;li&gt; for lists.</div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Title</th><th>Subject</th><th>Level</th><th>Questions</th><th>Videos</th><th>Status</th><th>Actions</th></tr>
+          <tr><td><b>Fraction Operations</b></td><td>Mathematics</td><td><span class="tag tel">EL</span></td><td>3</td><td>3</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>Basic Sentence Construction</b></td><td>English</td><td><span class="tag tel">EL</span></td><td>5</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>Pagbabasa at Pagsusulat</b></td><td>Filipino</td><td><span class="tag tel">EL</span></td><td>4</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>Subject-Verb Agreement</b></td><td>English</td><td><span class="tag tjhs">JHS</span></td><td>6</td><td>1</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>Introduction to Algebra</b></td><td>Mathematics</td><td><span class="tag tjhs">JHS</span></td><td>5</td><td>2</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>Climate Change & Environment</b></td><td>Science</td><td><span class="tag tjhs">JHS</span></td><td>2</td><td>0</td><td><span class="tag tdraft">Draft</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>General Mathematics</b></td><td>Mathematics</td><td><span class="tag tshs11">SHS 11</span></td><td>4</td><td>1</td><td><span class="tag tpub">Published</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+          <tr><td><b>Statistics & Probability</b></td><td>Mathematics</td><td><span class="tag tshs12">SHS 12</span></td><td>3</td><td>2</td><td><span class="tag tdraft">Draft</span></td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('edit-lesson')">Edit</button><button class="btn btn-sm" style="background:#EDE8FF;color:var(--p);border-color:#C4B8FF" onclick="openModal('add-question')">+ Quiz</button></div></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div id="S-questions" class="SCR">
+      <div class="sechead">
+        <div class="sectitle">Quiz questions</div>
+        <button class="btn btn-p" onclick="openModal('add-question')">+ Add Question</button>
+      </div>
+      <div class="tip"><b>Tip:</b> Add as many questions per lesson as you want — Easy, Medium, and Hard. The app randomly picks questions for each student session.</div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Question</th><th>Lesson</th><th>Difficulty</th><th>Correct</th><th>Actions</th></tr>
+          <tr><td style="max-width:200px">What is ¾ + ½?</td><td>Fraction Operations</td><td><span class="tag" style="background:#D6FAF0;color:#0A5C42">Easy</span></td><td>B. 1¼</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td style="max-width:200px">What is the LCD of ½ and ⅓?</td><td>Fraction Operations</td><td><span class="tag" style="background:#FFF0DC;color:#7A4A00">Medium</span></td><td>C. 6</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td style="max-width:200px">"The children ___ in the park."</td><td>Subject-Verb Agreement</td><td><span class="tag" style="background:#D6FAF0;color:#0A5C42">Easy</span></td><td>B. play</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td style="max-width:200px">Solve: x + 7 = 15. x = ?</td><td>Introduction to Algebra</td><td><span class="tag" style="background:#FFF0DC;color:#7A4A00">Medium</span></td><td>C. 8</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td style="max-width:200px">Main cause of climate change?</td><td>Climate Change</td><td><span class="tag" style="background:#D6FAF0;color:#0A5C42">Easy</span></td><td>B. Burning fossil fuels</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
+          <tr><td style="max-width:200px">Simple interest: ₱5,000 at 4% for 2 years?</td><td>General Mathematics</td><td><span class="tag" style="background:#FFE0E8;color:#8C1A36">Hard</span></td><td>B. ₱400</td><td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-question')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Question deleted!')">Delete</button></div></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- VIDEOS -->
+    <div id="S-videos" class="SCR">
+      <div class="sechead">
+        <div class="sectitle">YouTube videos</div>
+        <button class="btn btn-p" onclick="openModal('add-video')">+ Add Video</button>
+      </div>
+      <div class="tip"><b>How to get a YouTube ID:</b> Open the video on YouTube → copy the code after <b>?v=</b> in the URL → paste below. Example: youtube.com/watch?v=<b>abc123XYZ</b></div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Thumbnail</th><th>Title</th><th>Lesson</th><th>Channel</th><th>Duration</th><th>Actions</th></tr>
+          <tr>
+            <td><div class="yt-prev" style="background:#5C35D9;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
+            <td><b>Understanding Fractions</b></td><td>Fraction Operations</td><td>DepEd TV</td><td>5:24</td>
+            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="yt-prev" style="background:#F03E6B;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
+            <td><b>Subject-Verb Agreement</b></td><td>Subject-Verb Agreement</td><td>English Guro PH</td><td>7:10</td>
+            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="yt-prev" style="background:#0DBF7E;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
+            <td><b>Pagbabasa — Simpleng Kwento</b></td><td>Pagbabasa at Pagsusulat</td><td>DepEd TV</td><td>4:33</td>
+            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
+          </tr>
+          <tr>
+            <td><div class="yt-prev" style="background:#F5A623;width:80px;height:50px;border-radius:8px;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px">▶</div></td>
+            <td><b>Intro to Algebra — Jeepney Example</b></td><td>Introduction to Algebra</td><td>Math Teacher Guro</td><td>6:45</td>
+            <td><div class="action-row"><button class="btn btn-o btn-sm" onclick="openModal('add-video')">Edit</button><button class="btn btn-r btn-sm" onclick="showAlert('Video removed!')">Remove</button></div></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div id="S-progress" class="SCR">
+      <div class="sechead"><div class="sectitle">Progress reports</div><button class="btn btn-o" onclick="showAlert('Report exported as CSV!')">Export CSV</button></div>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Student</th><th>Level</th><th>Math</th><th>English</th><th>Filipino</th><th>Science</th><th>Total XP</th><th>Last Active</th></tr>
+          <tr><td><b>Juan dela Cruz</b></td><td><span class="tag tel">EL</span></td><td>68%</td><td>40%</td><td>43%</td><td>55%</td><td><b style="color:var(--p)">620</b></td><td>Today</td></tr>
+          <tr><td><b>Ana Lopez</b></td><td><span class="tag tel">EL</span></td><td>32%</td><td>58%</td><td>70%</td><td>44%</td><td><b style="color:var(--p)">410</b></td><td>Today</td></tr>
+          <tr><td><b>Jose Bautista</b></td><td><span class="tag tjhs">JHS</span></td><td>28%</td><td>62%</td><td>55%</td><td>38%</td><td><b style="color:#F5A623">290</b></td><td>2 days ago</td></tr>
+          <tr><td><b>Maria Reyes</b></td><td><span class="tag tjhs">JHS</span></td><td>75%</td><td>80%</td><td>65%</td><td>70%</td><td><b style="color:#0DBF7E">890</b></td><td>5 days ago</td></tr>
+          <tr><td><b>Pedro Santos</b></td><td><span class="tag tshs11">SHS 11</span></td><td>82%</td><td>74%</td><td>68%</td><td>77%</td><td><b style="color:#0DBF7E">1240</b></td><td>Today</td></tr>
+          <tr><td><b>Rosa Garcia</b></td><td><span class="tag tshs12">SHS 12</span></td><td>90%</td><td>85%</td><td>88%</td><td>82%</td><td><b style="color:#0DBF7E">1820</b></td><td>Yesterday</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="S-settings" class="SCR">
+      <div class="sectitle" style="margin-bottom:14px">App settings</div>
+      <div style="background:var(--w);border:2px solid var(--bd);border-radius:14px;padding:16px;max-width:500px">
+        <div class="form-group"><label class="form-label">SCHOOL / CENTER NAME</label><input class="form-input" value="A&E Elementary and JHS — Davao"></div>
+        <div class="form-group"><label class="form-label">ALS FACILITATOR NAME</label><input class="form-input" value="Teacher Cruz"></div>
+        <div class="form-group"><label class="form-label">SUPABASE PROJECT URL</label><input class="form-input" value="https://your-project.supabase.co" type="url"></div>
+        <div class="form-group"><label class="form-label">SUPABASE ANON KEY</label><input class="form-input" value="eyJhbGciOiJIUzI1NiIs..." type="password"></div>
+        <div class="form-group"><label class="form-label">ANTHROPIC API KEY (server only)</label><input class="form-input" value="sk-ant-..." type="password"></div>
+        <div class="form-group"><label class="form-label">DEFAULT STUDENT LEVEL</label>
+          <select class="form-select"><option>Elementary (EL)</option><option>Junior High School (JHS)</option><option>SHS Grade 11</option><option>SHS Grade 12</option></select>
+        </div>
+        <button class="btn btn-g" onclick="showAlert('Settings saved successfully!')">Save settings</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODALS -->
+<div id="modal-bg" class="modal-bg" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<div id="toast" style="display:none;position:absolute;bottom:20px;right:20px;background:#0DBF7E;color:#fff;font-size:12px;font-weight:800;padding:10px 18px;border-radius:20px;z-index:200"></div>
+
+</div>
+
+<script>
+var TITLES={'S-overview':'Overview','S-students':'Students','S-lessons':'Lessons','S-questions':'Questions','S-videos':'Videos','S-progress':'Progress Reports','S-settings':'Settings'};
+
+function goTab(id,btn){
+  document.querySelectorAll('.SCR').forEach(function(s){s.classList.remove('ON');});
+  var s=document.getElementById(id);if(s)s.classList.add('ON');
+  document.querySelectorAll('.snb').forEach(function(b){b.classList.remove('on');});
+  if(btn)btn.classList.add('on');
+  document.getElementById('tb-title').textContent=TITLES[id]||'Dashboard';
+}
+
+var STUDENTS=[
+  {n:'Juan dela Cruz',l:'EL',xp:620,streak:5,c:'#5C35D9',i:'JD'},
+  {n:'Ana Lopez',l:'EL',xp:410,streak:3,c:'#0DBF7E',i:'AL'},
+  {n:'Jose Bautista',l:'JHS',xp:290,streak:1,c:'#F5A623',i:'JB'},
+  {n:'Maria Reyes',l:'JHS',xp:890,streak:0,c:'#F03E6B',i:'MR'},
+  {n:'Pedro Santos',l:'SHS 11',xp:1240,streak:7,c:'#5C35D9',i:'PS'},
+  {n:'Rosa Garcia',l:'SHS 12',xp:1820,streak:12,c:'#0DBF7E',i:'RG'},
+  {n:'Carlos Dela Vega',l:'EL',xp:180,streak:2,c:'#F5A623',i:'CD'},
+  {n:'Liza Manalo',l:'JHS',xp:560,streak:4,c:'#F03E6B',i:'LM'}
+];
+
+function buildStudents(){
+  var lvlTag={'EL':'tel','JHS':'tjhs','SHS 11':'tshs11','SHS 12':'tshs12'};
+  var h='';
+  STUDENTS.forEach(function(s){
+    h+='<div class="student-row"><div class="student-av" style="background:'+s.c+';color:#fff">'+s.i+'</div><div style="flex:1"><div class="student-name">'+s.n+'</div><div class="student-level"><span class="tag '+lvlTag[s.l]+'">'+s.l+'</span></div></div><div class="student-prog"><div class="student-xp">'+s.xp+' XP</div><div class="student-streak">'+(s.streak>0?'🔥 '+s.streak+' day streak':'No recent activity')+'</div></div><button class="btn btn-o btn-sm" style="margin-left:10px" onclick="showAlert(\'Progress report opened for '+s.n+'!\')">View</button></div>';
+  });
+  document.getElementById('student-list').innerHTML=h;
+}
+
+var MODALS={
+  'add-student':'<div class="modal-h"><div class="modal-title">Add new student</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-group"><label class="form-label">FULL NAME</label><input class="form-input" placeholder="e.g. Juan dela Cruz"></div><div class="form-row"><div class="form-group"><label class="form-label">LEVEL</label><select class="form-select"><option>Elementary</option><option>JHS</option><option>SHS 11</option><option>SHS 12</option></select></div><div class="form-group"><label class="form-label">CONTACT NUMBER</label><input class="form-input" placeholder="09xx-xxx-xxxx"></div></div><div class="form-group"><label class="form-label">EMAIL (optional)</label><input class="form-input" type="email" placeholder="student@email.com"></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Student added and login credentials sent!\')">Add Student</button></div>',
+  'add-lesson':'<div class="modal-h"><div class="modal-title">Add new lesson</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-row"><div class="form-group"><label class="form-label">SUBJECT</label><select class="form-select"><option>Mathematics</option><option>English</option><option>Filipino</option><option>Science</option><option>Self & Society</option><option>Life & Career</option><option>Digital Skills</option></select></div><div class="form-group"><label class="form-label">LEVEL</label><select class="form-select"><option>Elementary (EL)</option><option>JHS</option><option>SHS Grade 11</option><option>SHS Grade 12</option></select></div></div><div class="form-group"><label class="form-label">LESSON TITLE</label><input class="form-input" placeholder="e.g. Fraction Operations"></div><div class="form-group"><label class="form-label">LESSON CONTENT (HTML)</label><textarea class="form-textarea" style="min-height:120px" placeholder="&lt;h4&gt;What is a fraction?&lt;/h4&gt;&#10;&lt;p&gt;A fraction shows a part of a whole...&lt;/p&gt;&#10;&lt;ul&gt;&lt;li&gt;Numerator (top)&lt;/li&gt;&lt;li&gt;Denominator (bottom)&lt;/li&gt;&lt;/ul&gt;"></textarea></div><div class="form-row"><div class="form-group"><label class="form-label">XP REWARD</label><input class="form-input" type="number" value="20"></div><div class="form-group"><label class="form-label">STATUS</label><select class="form-select"><option>Draft</option><option>Published</option></select></div></div><div class="form-group"><label class="form-label">FILIPINO LANGUAGE LESSON?</label><select class="form-select"><option>No — respond in English</option><option>Yes — respond in Filipino</option></select></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-p" onclick="closeModalDirect();showAlert(\'Lesson saved as draft!\')">Save Draft</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Lesson published successfully!\')">Publish</button></div>',
+  'edit-lesson':'<div class="modal-h"><div class="modal-title">Edit lesson</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-group"><label class="form-label">LESSON TITLE</label><input class="form-input" value="Fraction Operations"></div><div class="form-group"><label class="form-label">LESSON CONTENT (HTML)</label><textarea class="form-textarea" style="min-height:120px">&lt;h4&gt;What is a fraction?&lt;/h4&gt;\n&lt;p&gt;A fraction shows a part of a whole...&lt;/p&gt;</textarea></div><div class="form-row"><div class="form-group"><label class="form-label">SUBJECT</label><select class="form-select"><option selected>Mathematics</option><option>English</option><option>Filipino</option></select></div><div class="form-group"><label class="form-label">LEVEL</label><select class="form-select"><option selected>Elementary (EL)</option><option>JHS</option></select></div></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Lesson updated successfully!\')">Save Changes</button></div>',
+  'add-question':'<div class="modal-h"><div class="modal-title">Add quiz question</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="form-group"><label class="form-label">LESSON</label><select class="form-select"><option>Fraction Operations</option><option>Subject-Verb Agreement</option><option>Pagbabasa at Pagsusulat</option><option>Introduction to Algebra</option><option>General Mathematics</option></select></div><div class="form-group"><label class="form-label">QUESTION TEXT</label><textarea class="form-textarea" placeholder="Type the question here..."></textarea></div><div class="form-group"><label class="form-label">ANSWER OPTIONS</label><div class="opt-row"><span class="opt-label">A.</span><input class="form-input" placeholder="Option A" style="flex:1"><input type="radio" name="correct" value="a" style="margin-left:8px"><span class="correct-radio">Correct</span></div><div class="opt-row"><span class="opt-label">B.</span><input class="form-input" placeholder="Option B" style="flex:1"><input type="radio" name="correct" value="b" style="margin-left:8px"><span class="correct-radio">Correct</span></div><div class="opt-row"><span class="opt-label">C.</span><input class="form-input" placeholder="Option C" style="flex:1"><input type="radio" name="correct" value="c" style="margin-left:8px"><span class="correct-radio">Correct</span></div><div class="opt-row"><span class="opt-label">D.</span><input class="form-input" placeholder="Option D" style="flex:1"><input type="radio" name="correct" value="d" style="margin-left:8px"><span class="correct-radio">Correct</span></div></div><div class="form-group"><label class="form-label">EXPLANATION (shown after answering)</label><input class="form-input" placeholder="e.g. ¾ + 2/4 = 5/4 = 1¼"></div><div class="form-group"><label class="form-label">DIFFICULTY</label><select class="form-select"><option>Easy</option><option>Medium</option><option>Hard</option></select></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Question added successfully!\')">Add Question</button></div>',
+  'add-video':'<div class="modal-h"><div class="modal-title">Add YouTube video</div><button class="close-btn" onclick="closeModalDirect()">×</button></div><div class="alert alert-g" style="font-size:12px">Paste the YouTube video ID — the part after <b>?v=</b> in the URL.<br>Example: youtube.com/watch?v=<b>abc123XYZ</b> → ID is <b>abc123XYZ</b></div><div class="form-group"><label class="form-label">YOUTUBE VIDEO ID</label><input class="form-input" id="yt-id-input" placeholder="e.g. n0DODiQMHo8" oninput="previewYT(this.value)"><div id="yt-preview" style="margin-top:8px;display:none"><img id="yt-prev-img" style="width:160px;height:90px;border-radius:10px;border:2px solid var(--bd);object-fit:cover" alt="Preview"></div></div><div class="form-group"><label class="form-label">VIDEO TITLE</label><input class="form-input" placeholder="e.g. Understanding Fractions — DepEd TV"></div><div class="form-group"><label class="form-label">LESSON</label><select class="form-select"><option>Fraction Operations</option><option>Subject-Verb Agreement</option><option>Pagbabasa at Pagsusulat</option><option>Introduction to Algebra</option><option>General Mathematics</option></select></div><div class="form-row"><div class="form-group"><label class="form-label">CHANNEL NAME</label><input class="form-input" placeholder="e.g. DepEd TV"></div><div class="form-group"><label class="form-label">DURATION</label><input class="form-input" placeholder="e.g. 5:24"></div></div><div class="modal-footer"><button class="btn btn-o" onclick="closeModalDirect()">Cancel</button><button class="btn btn-g" onclick="closeModalDirect();showAlert(\'Video added successfully!\')">Add Video</button></div>'
+};
+
+function openModal(key){
+  document.getElementById('modal-content').innerHTML=MODALS[key]||'';
+  document.getElementById('modal-bg').classList.add('on');
+}
+function closeModal(e){if(e.target===document.getElementById('modal-bg'))closeModalDirect();}
+function closeModalDirect(){document.getElementById('modal-bg').classList.remove('on');}
+function previewYT(id){
+  if(id.length>5){
+    document.getElementById('yt-preview').style.display='block';
+    document.getElementById('yt-prev-img').src='https://img.youtube.com/vi/'+id+'/hqdefault.jpg';
+  }else{document.getElementById('yt-preview').style.display='none';}
+}
+function showAlert(msg){
+  var t=document.getElementById('toast');
+  t.textContent='✅ '+msg;
+  t.style.display='block';
+  setTimeout(function(){t.style.display='none';},2800);
+}
+
+buildStudents();
+</script>
